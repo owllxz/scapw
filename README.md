@@ -1,6 +1,6 @@
 # scapw
 
-Requistos:
+Requistos SCAP:
 
 Front End:
 
