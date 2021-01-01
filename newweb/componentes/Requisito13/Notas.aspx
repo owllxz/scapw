@@ -33,7 +33,7 @@
 
         </div>
         <div style="padding-bottom:25px">
-            <asp:Textbox runat="server" style="margin-left:100px" id="Text42" placeholder="Nota 1" type="text" readonly="True" />
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text4" placeholder="Nota 1" type="text" readonly="True" />
             <asp:Textbox runat="server" style="margin-left:100px" id="Text5" placeholder="Nota 1" type="text" readonly="True" />
             <asp:Textbox runat="server" style="margin-left:100px" id="Text6" placeholder="Nota 1" type="text" readonly="True" />
         </div>

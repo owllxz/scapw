@@ -96,13 +96,13 @@ namespace newweb.componentes.Requisito13
         protected global::System.Web.UI.WebControls.TextBox Text3;
 
         /// <summary>
-        /// Control Text42.
+        /// Control Text4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Text42;
+        protected global::System.Web.UI.WebControls.TextBox Text4;
 
         /// <summary>
         /// Control Text5.
