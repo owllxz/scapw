@@ -47,13 +47,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.22\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
+      <HintPath>C:\Users\jsoto\Downloads\MySql.Data\MySql.Data.DLL</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -111,6 +112,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="componentes\requisito.aspx" />
+    <Content Include="componentes\Requisito13\Notas.aspx" />
     <Content Include="componentes\requisito1\login.aspx" />
     <Content Include="componentes\requisito1\register.aspx" />
     <Content Include="Contact.aspx" />
@@ -183,6 +185,13 @@
     <Compile Include="componentes\requisito.aspx.designer.cs">
       <DependentUpon>requisito.aspx</DependentUpon>
     </Compile>
+    <Compile Include="componentes\Requisito13\Notas.aspx.cs">
+      <DependentUpon>Notas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\Requisito13\Notas.aspx.designer.cs">
+      <DependentUpon>Notas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="componentes\requisito1\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -224,12 +233,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
