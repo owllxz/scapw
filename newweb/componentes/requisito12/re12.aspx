@@ -9,13 +9,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="width: 221px; margin-left: 501px">
+        <div style="width: 399px; margin-left: 434px">
 
 
 
 
             <asp:Label ID="Label1" runat="server" Text="Prueba de página para horario" style="font-size: medium"></asp:Label>
-            <asp:Button ID="Button1" runat="server" Text="Mostrar Horario" style="margin-left: 26px; margin-top: 25px; margin-bottom: 53px;" OnClick="Button1_Click" />
+            <br />
+            <asp:Button ID="Button1" runat="server" Text="Mostrar Horario" style="margin-left: 123px; margin-top: 38px; margin-bottom: 53px;" OnClick="Button1_Click" Height="37px" />
+            <asp:Image ID="Image1" ImageUrl="C:\Users\C0DA\Desktop\HORARIO 1.png" runat="server" Height="409px" Visible="False" Width="369px"/>
+
 
         </div>
     </form>
