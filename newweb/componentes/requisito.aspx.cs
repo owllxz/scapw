@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace newweb.componentes
+namespace newweb.componentes.requisito1
 {
     public partial class requisito : System.Web.UI.Page
     {
@@ -16,7 +16,7 @@ namespace newweb.componentes
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Console.Write("HOla");
+            
         }
     }
 }
