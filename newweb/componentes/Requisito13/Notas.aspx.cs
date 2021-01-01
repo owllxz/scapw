@@ -14,6 +14,7 @@ namespace newweb.componentes.Requisito13
             string asignatura = "Lenguaje";
             Text1.Text = asignatura;
             Alumno.Text = "Javier Alonso Soto Letelier";
+            Asignatura.Text = "Lenguaje";
             
         }
     }
