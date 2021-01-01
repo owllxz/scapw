@@ -22,16 +22,18 @@
     <form id="form1" runat="server">
         <div class ="container">
             <span class="d-block p-2 bg-primary text-white mb-3">Ingreso a Portal de SCAP</span>
-            <div class ="cuadrosTexto">
+            <div>
                 <asp:Label ID="Label2" runat="server" CssClass="input-group-text" Text="Correo"></asp:Label><br />
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox><br />
 
                 <asp:Label ID="Label3" runat="server" CssClass="input-group-text" Text="Contraseña"></asp:Label><br />
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" OnTextChanged="TextBox2_TextChanged"></asp:TextBox><br />
             </div>
              
+            <div>   
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Ingresar" />
+            </div>
 
-             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         </div>
         
     </form>
