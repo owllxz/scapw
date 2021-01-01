@@ -26,8 +26,7 @@
                 <asp:Panel ID="Panel1" runat="server" Height="47px" CssClass="colorlineas" Width="1418px">
                 </asp:Panel>
             </div>
-
-            &nbsp;&nbsp;&nbsp;
+             
             <div style="background-color:#FFFFFF; height: 74px; width: 427px;">
                 <asp:Label ID="Label1" runat="server" Text="SCAP" CssClass="titulo"></asp:Label>
                 &nbsp;Sistema de comunicacion alumno-profesor<br />
