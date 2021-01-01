@@ -71,6 +71,27 @@ namespace newweb.componentes.requisito1
                 return "La conexion no esta abierta";
             }
         }
+        public void ConsultaPersonas()
+        {
+            if (estado)
+            {
+                try
+                {
+                    MySqlCommand comm = conBD.CreateCommand();
+                    comm.CommandText = "Select * from Persona";
+                    MySqlDataReader myReader;
+                    myReader = comm.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        Console.WriteLine(myReader.GetString(6));
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
         public void cerrarConexion()
         {
             conBD.Close();
