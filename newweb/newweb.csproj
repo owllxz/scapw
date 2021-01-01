@@ -113,6 +113,7 @@
     <Content Include="componentes\WebForm2.aspx" />
     <Content Include="componentes\requisito.aspx" />
     <Content Include="componentes\requisito1\login.aspx" />
+    <Content Include="componentes\Req_4\Req_4.aspx" />
     <Content Include="componentes\requisito1\register.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -202,8 +203,15 @@
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="componentes\Req_4\Req_4.aspx.cs">
+      <DependentUpon>Req_4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>    
     <Compile Include="componentes\requisito1\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\Req_4\Req_4.aspx.designer.cs">
+      <DependentUpon>Req_4.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
