@@ -1,0 +1,24 @@
+﻿.Boton {
+    border-color: #25B2F5;
+    border-style: solid;
+    background-color: #06A6F2;
+    color: #FFFFFF;
+    font-family: Arial;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-left: 1px;
+    margin-top: 5px;
+}
+.body {
+    background-color: coral;
+}
+
+.titulo {
+    font-family: Elephant;
+    font-size: 40pt;
+    border-style: #08B2E5;
+}
+
+.colorlineas {
+    background-color: #3A9BB9;
+}
