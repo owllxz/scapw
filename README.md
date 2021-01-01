@@ -1,5 +1,3 @@
-# scapw
-
 Requistos SCAP:
 
 Front End:
