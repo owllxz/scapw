@@ -14,14 +14,19 @@ namespace newweb.componentes.requisito1
             conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
             string llamado = con.crearConexion();
 
-            llamado = con.ConsultaPersonasSinRol();
+            con.ConsultaPersonasSinRol();
 
-            Label1.Text = "";
+            GridView1.DataSource = conexion.ds;
+            GridView1.DataBind();
+            con.cerrarConexion();
 
-            string[] equationTokens = llamado.Split(new char[1] { '/' });
-
-            foreach (string Tok in equationTokens)
-                Label1.Text += Tok + "--";
+        }
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            string rol = rolgrupo.SelectedItem.Text;
+            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            string llamado = con.crearConexion();
+            Label4.Text = con.insertarRol(rol, Int32.Parse(TextBox1.Text), 0, "");
         }
     }
 }

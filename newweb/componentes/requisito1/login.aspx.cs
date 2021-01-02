@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,7 @@ namespace newweb.componentes.requisito1
 {
     public class conexion
     {
+        public static DataSet ds;
         string servidor;
         string puerto;
         string usuario;
@@ -73,32 +75,119 @@ namespace newweb.componentes.requisito1
                 return "La conexion no esta abierta";
             }
         }
-        public string ConsultaPersonasSinRol()
+        public string insertarRol(string rol, int personaID, int apoderadoID, string aingreso)
         {
-            string resultado = "";
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Persona where rol = 0 and ID = @id";
+                comm.Parameters.AddWithValue("@id", personaID);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                int contador = 0;
+
+                while (myReader.Read())
+                {
+                    contador++;
+                }
+
+                cerrarConexion();
+
+                crearConexion();
+
+
+                if(contador == 0)
+                {
+                    return "No";
+                }
+                else
+                {
+                    comm = conBD.CreateCommand();
+                    if (rol == "Secretario")
+                    {
+                        comm.CommandText = "Insert INTO Secretario(Persona_FK, A_ingreso) VALUES(@persona, @Aingreso)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                    }
+                    else if(rol == "Director")
+                    {
+                        comm.CommandText = "Insert INTO Director(A_ingreso, Persona_FK) VALUES(@Aingreso, @persona)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                    }
+                    else if(rol == "Profesor")
+                    {
+                        comm.CommandText = "Insert INTO Profesor(Persona_FK, A_ingreso) VALUES(@persona, @Aingreso)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                    }
+                    else if(rol == "Administrador")
+                    {
+                        comm.CommandText = "Insert INTO Administrador(Persona_FK) VALUES(@persona)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                    }
+                    else if(rol == "Apoderado")
+                    {
+                        comm.CommandText = "Insert INTO Apoderado(Persona_FK) VALUES(@persona)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                    }
+                    else if(rol == "Alumnos")
+                    {
+                        comm.CommandText = "Insert INTO Alumnos(Persona_FK, A_ingreso, Apoderado_FK) VALUES(@persona, @Aingreso, @apoderado)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                        comm.Parameters.AddWithValue("@apoderado", apoderadoID);
+                    }
+                    else
+                    {
+                        return "Rol no existe";
+                    }
+                    comm.ExecuteNonQuery();
+                }
+
+                return "Rol asignado";
+            }
+            else
+            {
+                return "La conexion no esta abierta";
+            }
+        }
+        public void ConsultaPersonasSinRol()
+        {
+            //string resultado = "";
             if (estado)
             {
                 try
                 {
                     MySqlCommand comm = conBD.CreateCommand();
-                    comm.CommandText = "Select * from Persona where rol = 0";
-                    MySqlDataReader myReader;
-                    myReader = comm.ExecuteReader();
+                    comm.CommandText = "Select ID, Nombres from Persona where rol = 0";
+                    //MySqlDataReader myReader;
+                    //myReader = comm.ExecuteReader();
+
+                    MySqlDataAdapter mda = new MySqlDataAdapter(comm);
+                    ds = new DataSet();
+                    mda.Fill(ds);
+                    comm.ExecuteNonQuery();
+
+                    /*
                     while (myReader.Read())
                     {
                         resultado += myReader.GetInt32(0).ToString();
-                        resultado += "/" + myReader.GetString(1) + "/";
+                        resultado += myReader.GetString(1) + "/";
                     }
-                    return resultado;
+                    resultado = resultado.Substring(0, resultado.Length - 1);
+                    */
                 }
                 catch (Exception ex)
                 {
-                    return resultado;
+                    
                 }
             }
             else
             {
-                return resultado;
+                
             }
         }
         public void cerrarConexion()
