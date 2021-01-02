@@ -25,7 +25,7 @@ namespace newweb.componentes.requisito5
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            string observaciones = TextBox1.Text;
+            //string observaciones = TextBox1.Text;
         }
 
         protected void CheckBox2_CheckedChanged(object sender, EventArgs e)

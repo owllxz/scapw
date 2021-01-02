@@ -111,6 +111,7 @@
     <Content Include="componentes\requisito11\re11.aspx" />
     <Content Include="componentes\requisito12\re12.aspx" />
     <Content Include="componentes\requisito12\StyleSheet.css" />
+    <Content Include="componentes\requisito1\requisito2.aspx" />
     <Content Include="componentes\requisito1\roles.aspx" />
     <Content Include="componentes\requisito5\re5.aspx" />
     <Content Include="componentes\WebForm2.aspx" />
@@ -136,6 +137,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="componentes\requisito1\ProcessRequest.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -194,6 +196,13 @@
     </Compile>
     <Compile Include="componentes\requisito12\re12.aspx.designer.cs">
       <DependentUpon>re12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito1\requisito2.aspx.cs">
+      <DependentUpon>requisito2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\requisito2.aspx.designer.cs">
+      <DependentUpon>requisito2.aspx</DependentUpon>
     </Compile>
     <Compile Include="componentes\requisito1\roles.aspx.cs">
       <DependentUpon>roles.aspx</DependentUpon>
