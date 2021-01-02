@@ -108,8 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="componentes\requisito11\re11.aspx" />
     <Content Include="componentes\requisito12\re12.aspx" />
     <Content Include="componentes\requisito12\StyleSheet.css" />
+    <Content Include="componentes\requisito5\re5.aspx" />
     <Content Include="componentes\WebForm2.aspx" />
     <Content Include="componentes\requisito.aspx" />
     <Content Include="componentes\requisito1\login.aspx" />
@@ -177,12 +179,26 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="componentes\requisito11\re11.aspx.cs">
+      <DependentUpon>re11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito11\re11.aspx.designer.cs">
+      <DependentUpon>re11.aspx</DependentUpon>
+    </Compile>
     <Compile Include="componentes\requisito12\re12.aspx.cs">
       <DependentUpon>re12.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="componentes\requisito12\re12.aspx.designer.cs">
       <DependentUpon>re12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito5\re5.aspx.cs">
+      <DependentUpon>re5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito5\re5.aspx.designer.cs">
+      <DependentUpon>re5.aspx</DependentUpon>
     </Compile>
     <Compile Include="componentes\WebForm2.aspx.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
