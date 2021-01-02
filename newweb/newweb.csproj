@@ -110,6 +110,7 @@
     <Content Include="About.aspx" />
     <Content Include="componentes\requisito12\re12.aspx" />
     <Content Include="componentes\requisito12\StyleSheet.css" />
+    <Content Include="componentes\requisito1\roles.aspx" />
     <Content Include="componentes\WebForm2.aspx" />
     <Content Include="componentes\requisito.aspx" />
     <Content Include="componentes\requisito1\login.aspx" />
@@ -185,6 +186,13 @@
     <Compile Include="componentes\requisito12\re12.aspx.designer.cs">
       <DependentUpon>re12.aspx</DependentUpon>
     </Compile>
+    <Compile Include="componentes\requisito1\roles.aspx.cs">
+      <DependentUpon>roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\roles.aspx.designer.cs">
+      <DependentUpon>roles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="componentes\WebForm2.aspx.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -206,7 +214,7 @@
     <Compile Include="componentes\Req_4\Req_4.aspx.cs">
       <DependentUpon>Req_4.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>    
+    </Compile>
     <Compile Include="componentes\requisito1\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>

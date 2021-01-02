@@ -71,25 +71,32 @@ namespace newweb.componentes.requisito1
                 return "La conexion no esta abierta";
             }
         }
-        public void ConsultaPersonas()
+        public string ConsultaPersonasSinRol()
         {
+            string resultado = "";
             if (estado)
             {
                 try
                 {
                     MySqlCommand comm = conBD.CreateCommand();
-                    comm.CommandText = "Select * from Persona";
+                    comm.CommandText = "Select * from Persona where rol = 0";
                     MySqlDataReader myReader;
                     myReader = comm.ExecuteReader();
                     while (myReader.Read())
                     {
-                        Console.WriteLine(myReader.GetString(6));
+                        resultado += myReader.GetInt32(0).ToString();
+                        resultado += "/" + myReader.GetString(1) + "/";
                     }
+                    return resultado;
                 }
                 catch (Exception ex)
                 {
-
+                    return resultado;
                 }
+            }
+            else
+            {
+                return resultado;
             }
         }
         public void cerrarConexion()
