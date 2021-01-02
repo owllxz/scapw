@@ -36,9 +36,12 @@
                 <asp:Button ID="Button1" runat="server" Text="Mostrar Horario" CssClass="Boton" OnClick="Button1_Click" Height="37px" Width="216px" />
             </div>
 
+            <!--cambiar ruta de imagen-->
+
             <div style="background-color:#FFFFFF; height: 621px; width: 660px; margin-left: 314px; margin-top: 86px;">
                  <asp:Image ID="Image1" Visibile="False" ImageUrl="C:\Users\C0DA\Desktop\HORARIO 1.png" runat="server" Visible="False" Height="603px" Width="641px" style="margin-left: 8px; margin-right: 22px; margin-top: 7px;" />
             </div>
+             <!--cambiar ruta de imagen-->
 
             <div style="background-color:#FFFFFF; height: 53px; width: 1422px; margin-left: 0px; margin-top: 96px;">
                  <asp:Panel ID="Panel2" runat="server" Height="39px" style="margin-left: 4px; margin-top: 8px" Width="1411px" CssClass="colorlineas">
