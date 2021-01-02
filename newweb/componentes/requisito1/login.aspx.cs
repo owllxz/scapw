@@ -18,7 +18,8 @@ namespace newweb.componentes.requisito1
         MySqlConnection conBD;
         bool estado;
 
-        public conexion(string servidor, string puerto, string usuario, string password, string db){
+        public conexion(string servidor, string puerto, string usuario, string password, string db)
+        {
             this.servidor = servidor;
             this.puerto = puerto;
             this.usuario = usuario;
@@ -27,10 +28,11 @@ namespace newweb.componentes.requisito1
         }
         public string cadenaConexion()
         {
-            string cadena = "server="+servidor+"; port="+puerto+"; user id="+usuario+"; password="+password+"; database="+db+";";
+            string cadena = "server=" + servidor + "; port=" + puerto + "; user id=" + usuario + "; password=" + password + "; database=" + db + ";";
             return cadena;
         }
-        public string crearConexion() {
+        public string crearConexion()
+        {
             conBD = new MySqlConnection(cadenaConexion());
 
             try
@@ -61,7 +63,7 @@ namespace newweb.componentes.requisito1
                     comm.ExecuteNonQuery();
                     return "Usuario creado correctamente";
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return ex.ToString();
                 }
@@ -119,10 +121,10 @@ namespace newweb.componentes.requisito1
             return result;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Button1_Click1(object sender, EventArgs e)
         {
-            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
-            Label1.Text = con.crearConexion();
+
         }
+
     }
 }
