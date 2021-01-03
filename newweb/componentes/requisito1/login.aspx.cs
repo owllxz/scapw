@@ -75,6 +75,15 @@ namespace newweb.componentes.requisito1
                 return "La conexion no esta abierta";
             }
         }
+        public string decodificar(string _cadenaAdesencriptar)
+        {
+            string result = string.Empty;
+            byte[] decryted =
+            Convert.FromBase64String(_cadenaAdesencriptar);
+            System.Text.Encoding.Unicode.GetString(decryted, 0, decryted.ToArray().Length);
+            result = System.Text.Encoding.Unicode.GetString(decryted);
+            return result;
+        }
         public string insertarRol(string rol, int personaID, int apoderadoID, string aingreso)
         {
             if (estado)
@@ -189,6 +198,37 @@ namespace newweb.componentes.requisito1
             {
                 
             }
+        }
+        public string passwordUsuario(string correo)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Persona where Correo = @correo";
+                comm.Parameters.AddWithValue("@correo", correo);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                int contador = 0;
+                string pass = "";
+
+                while (myReader.Read())
+                {
+                    pass = myReader.GetString(6);
+                    contador++;
+                }
+                if (contador == 0)
+                {
+                    return "Error";
+                }
+                else
+                {
+                    pass = decodificar(pass);
+                    return pass;
+                }
+            }
+            return "Error";
         }
         public void cerrarConexion()
         {
