@@ -12,9 +12,15 @@
     <title></title>
 </head>
 <body>
+
     <form id="form10" runat="server">
         <div style="padding-bottom:50px">
             <asp:label runat="server" id="Alumno" ></asp:label>
+            <asp:DropDownList ID="DropDownList1" runat="server" Height="55px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="156px" AutoPostBack="True">
+                <asp:ListItem>Holaa</asp:ListItem>
+                <asp:ListItem>Hola22a</asp:ListItem>
+                <asp:ListItem>Hola31231a</asp:ListItem>
+            </asp:DropDownList>
         </div>
         <hr />
         <div style="padding-bottom:30px; margin-left:10px">
