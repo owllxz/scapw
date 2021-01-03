@@ -2,32 +2,36 @@
     <!--
     var customerName = Request["customerName"];
     -->
-    var customerEmail = Request["customerEmail"];
+
     <!--
         var customerRequest = Request["customerRequest"];
      -->
-        var errorMessage = "";
-        var debuggingFlag = false;
+    var errorMessage = "";
+    var debuggingFlag = false;
 
-        try
-        {
-            // Initialize WebMail helper
-            WebMail.SmtpServer = "mail.camifel.cl";
-            WebMail.SmtpPort = 26;
-            WebMail.UserName = "scap@camifel.cl";
-            WebMail.Password = "Scap123am.";
-            WebMail.From = "scap@camifel.cl";
+    try
+    {
+        //Consulta
 
-            // Send email
-            WebMail.Send(to: customerEmail,
-        subject: "Recuperación de contraseña",
-        body: "Tu contraseña es la siguiente: "
-    );
-        }
-        catch (Exception ex)
-        {
-            errorMessage = ex.Message;
-        }
+
+
+        // Initialize WebMail helper
+        WebMail.SmtpServer = "mail.camifel.cl";
+        WebMail.SmtpPort = 26;
+        WebMail.UserName = "scap@camifel.cl";
+        WebMail.Password = "Scap123am.";
+        WebMail.From = "scap@camifel.cl";
+
+        // Send email
+        WebMail.Send(to: "luxskkz@gmail.com",
+    subject: "Recuperación de contraseña",
+    body: "Tu contraseña es la siguiente: "
+) ;
+    }
+    catch (Exception ex)
+    {
+        errorMessage = ex.Message;
+    }
     }
     <!DOCTYPE html>
     <html>

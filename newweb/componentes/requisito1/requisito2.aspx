@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head >
+<head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 </head>
@@ -27,17 +27,15 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div >
-                                <form method="post" action="ProcessRequest.cshtml">
+                                <form id="form1" runat="server">
                                     
                                     <div class="form-group">
                                         <label class="lead">Correo</label>
-                                        <input type="text" class="form-control" name="customerEmail" title="Ingrese su correo " placeholder="example@gmail.com">
-                                        
+                                        <asp:TextBox ID="TextBox1" type="text" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
 
                                     <div>
-
-                                        <button type="submit" value="Submit" class="btn btn-default btn-block">Restablecer </button>
+                                        <asp:Button ID="Button1" runat="server" class="btn btn-default btn-block" Text="Restablecer" OnClick="Button1_Click" />
                                     </div>
                                 </form>
                             </div>
