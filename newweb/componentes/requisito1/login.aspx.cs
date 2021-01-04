@@ -272,6 +272,28 @@ namespace newweb.componentes.requisito1
             }
             return 0;
         }
+        public int obtenerID(string correo)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Persona where Correo = @correo";
+                comm.Parameters.AddWithValue("@correo", correo);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                int idUsuario = 0;
+
+                while (myReader.Read())
+                {
+                    idUsuario = myReader.GetInt32(0);
+                    break;
+                }
+                return idUsuario;
+            }
+            return 0;
+        }
         public string passwordUsuario(string correo)
         {
             if (estado)
@@ -354,6 +376,142 @@ namespace newweb.componentes.requisito1
             }
             return myList;
         }
+        public List<string> conocerRol(int idPersona)
+        {
+            List<string> datos = new List<string> { };
+            if (estado)
+            {
+                string rol = "";
+                int idRol = -1;
+
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Administrador where Persona_FK = @persona";
+                comm.Parameters.AddWithValue("@persona", idPersona);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    rol = "Administrador";
+                    idRol = myReader.GetInt32(0);
+                    break;
+                }
+                myReader.Close();
+                if(idRol != -1)
+                {
+                    datos.Add(rol);
+                    datos.Add(idRol.ToString());
+                    return datos;
+                }
+                else
+                {
+                    comm = conBD.CreateCommand();
+                    comm.CommandText = "Select * from Alumnos where Persona_FK = @persona";
+                    comm.Parameters.AddWithValue("@persona", idPersona);
+                    myReader = comm.ExecuteReader();
+
+                    while (myReader.Read())
+                    {
+                        rol = "Alumnos";
+                        idRol = myReader.GetInt32(0);
+                        break;
+                    }
+                    myReader.Close();
+                    if (idRol != -1)
+                    {
+                        datos.Add(rol);
+                        datos.Add(idRol.ToString());
+                        return datos;
+                    }
+                    else
+                    {
+                        comm = conBD.CreateCommand();
+                        comm.CommandText = "Select * from Apoderado where Persona_FK = @persona";
+                        comm.Parameters.AddWithValue("@persona", idPersona);
+                        myReader = comm.ExecuteReader();
+
+                        while (myReader.Read())
+                        {
+                            rol = "Apoderado";
+                            idRol = myReader.GetInt32(0);
+                            break;
+                        }
+                        myReader.Close();
+                        if (idRol != -1)
+                        {
+                            datos.Add(rol);
+                            datos.Add(idRol.ToString());
+                            return datos;
+                        }
+                        else
+                        {
+                            comm = conBD.CreateCommand();
+                            comm.CommandText = "Select * from Director where Persona_FK = @persona";
+                            comm.Parameters.AddWithValue("@persona", idPersona);
+                            myReader = comm.ExecuteReader();
+
+                            while (myReader.Read())
+                            {
+                                rol = "Director";
+                                idRol = myReader.GetInt32(0);
+                                break;
+                            }
+                            myReader.Close();
+                            if (idRol != -1)
+                            {
+                                datos.Add(rol);
+                                datos.Add(idRol.ToString());
+                                return datos;
+                            }
+                            else
+                            {
+                                comm = conBD.CreateCommand();
+                                comm.CommandText = "Select * from Profesor where Persona_FK = @persona";
+                                comm.Parameters.AddWithValue("@persona", idPersona);
+                                myReader = comm.ExecuteReader();
+
+                                while (myReader.Read())
+                                {
+                                    rol = "Profesor";
+                                    idRol = myReader.GetInt32(0);
+                                    break;
+                                }
+                                myReader.Close();
+                                if (idRol != -1)
+                                {
+                                    datos.Add(rol);
+                                    datos.Add(idRol.ToString());
+                                    return datos;
+                                }
+                                else
+                                {
+                                    comm = conBD.CreateCommand();
+                                    comm.CommandText = "Select * from Secretario where Persona_FK = @persona";
+                                    comm.Parameters.AddWithValue("@persona", idPersona);
+                                    myReader = comm.ExecuteReader();
+
+                                    while (myReader.Read())
+                                    {
+                                        rol = "Secretario";
+                                        idRol = myReader.GetInt32(0);
+                                        break;
+                                    }
+                                    myReader.Close();
+                                    if (idRol != -1)
+                                    {
+                                        datos.Add(rol);
+                                        datos.Add(idRol.ToString());
+                                        return datos;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return datos;
+        }
     }
     public partial class login : System.Web.UI.Page
     {
@@ -395,7 +553,29 @@ namespace newweb.componentes.requisito1
                         con.cerrarConexion();
 
                         //Redirije a pagina de requisitos
-                        Response.Redirect("roles.aspx");
+                        control.Control.estadoConexion = 1;
+                        control.Control.email = TextBox1.Text;
+
+                        con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                        con.crearConexion();
+                        int idUsuario = con.obtenerID(TextBox1.Text);
+                        con.cerrarConexion();
+
+                        control.Control.ID = idUsuario;
+
+                        con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                        con.crearConexion();
+
+                        List<String> datos = con.conocerRol(idUsuario);
+                        con.cerrarConexion();
+
+                        if (datos.Count > 0)
+                        {
+                            control.Control.rol = datos[0];
+                            control.Control.rolID = Int32.Parse(datos[1]);
+                        }
+
+                        Response.Redirect("menu.aspx");
                     }
                     else
                     {
