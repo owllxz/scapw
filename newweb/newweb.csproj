@@ -125,7 +125,6 @@
     <Content Include="About.aspx" />
     <Content Include="componentes\requisito11\re11.aspx" />
     <Content Include="componentes\requisito12\re12.aspx" />
-    <Content Include="componentes\requisito12\StyleSheet.css" />
     <Content Include="componentes\requisito1\evaluaciones.aspx" />
     <Content Include="componentes\requisito1\requisito2.aspx" />
     <Content Include="componentes\requisito1\roles.aspx" />
