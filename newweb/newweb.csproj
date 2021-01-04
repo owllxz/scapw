@@ -126,6 +126,7 @@
     <Content Include="componentes\requisito11\re11.aspx" />
     <Content Include="componentes\requisito12\re12.aspx" />
     <Content Include="componentes\requisito12\StyleSheet.css" />
+    <Content Include="componentes\requisito15\re15.aspx" />
     <Content Include="componentes\requisito1\evaluaciones.aspx" />
     <Content Include="componentes\requisito1\requisito2.aspx" />
     <Content Include="componentes\requisito1\roles.aspx" />
@@ -213,6 +214,12 @@
     </Compile>
     <Compile Include="componentes\requisito12\re12.aspx.designer.cs">
       <DependentUpon>re12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito15\re15.aspx.cs">
+      <DependentUpon>re15.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito15\re15.aspx.designer.cs">
+      <DependentUpon>re15.aspx</DependentUpon>
     </Compile>
     <Compile Include="componentes\requisito1\evaluaciones.aspx.cs">
       <DependentUpon>evaluaciones.aspx</DependentUpon>
