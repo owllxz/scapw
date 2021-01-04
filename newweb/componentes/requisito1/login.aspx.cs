@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,7 @@ namespace newweb.componentes.requisito1
 {
     public class conexion
     {
+        public static DataSet ds;
         string servidor;
         string puerto;
         string usuario;
@@ -72,6 +74,161 @@ namespace newweb.componentes.requisito1
             {
                 return "La conexion no esta abierta";
             }
+        }
+        public string decodificar(string _cadenaAdesencriptar)
+        {
+            string result = string.Empty;
+            byte[] decryted =
+            Convert.FromBase64String(_cadenaAdesencriptar);
+            System.Text.Encoding.Unicode.GetString(decryted, 0, decryted.ToArray().Length);
+            result = System.Text.Encoding.Unicode.GetString(decryted);
+            return result;
+        }
+        public string insertarRol(string rol, int personaID, int apoderadoID, string aingreso)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Persona where rol = 0 and ID = @id";
+                comm.Parameters.AddWithValue("@id", personaID);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                int contador = 0;
+
+                while (myReader.Read())
+                {
+                    contador++;
+                }
+
+                cerrarConexion();
+
+                crearConexion();
+
+
+                if(contador == 0)
+                {
+                    return "No";
+                }
+                else
+                {
+                    comm = conBD.CreateCommand();
+                    if (rol == "Secretario")
+                    {
+                        comm.CommandText = "Insert INTO Secretario(Persona_FK, A_ingreso) VALUES(@persona, @Aingreso)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                    }
+                    else if(rol == "Director")
+                    {
+                        comm.CommandText = "Insert INTO Director(A_ingreso, Persona_FK) VALUES(@Aingreso, @persona)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                    }
+                    else if(rol == "Profesor")
+                    {
+                        comm.CommandText = "Insert INTO Profesor(Persona_FK, A_ingreso) VALUES(@persona, @Aingreso)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                    }
+                    else if(rol == "Administrador")
+                    {
+                        comm.CommandText = "Insert INTO Administrador(Persona_FK) VALUES(@persona)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                    }
+                    else if(rol == "Apoderado")
+                    {
+                        comm.CommandText = "Insert INTO Apoderado(Persona_FK) VALUES(@persona)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                    }
+                    else if(rol == "Alumnos")
+                    {
+                        comm.CommandText = "Insert INTO Alumnos(Persona_FK, A_ingreso, Apoderado_FK) VALUES(@persona, @Aingreso, @apoderado)";
+                        comm.Parameters.AddWithValue("@persona", personaID);
+                        comm.Parameters.AddWithValue("@Aingreso", aingreso);
+                        comm.Parameters.AddWithValue("@apoderado", apoderadoID);
+                    }
+                    else
+                    {
+                        return "Rol no existe";
+                    }
+                    comm.ExecuteNonQuery();
+                }
+
+                return "Rol asignado";
+            }
+            else
+            {
+                return "La conexion no esta abierta";
+            }
+        }
+        public void ConsultaPersonasSinRol()
+        {
+            //string resultado = "";
+            if (estado)
+            {
+                try
+                {
+                    MySqlCommand comm = conBD.CreateCommand();
+                    comm.CommandText = "Select ID, Nombres from Persona where rol = 0";
+                    //MySqlDataReader myReader;
+                    //myReader = comm.ExecuteReader();
+
+                    MySqlDataAdapter mda = new MySqlDataAdapter(comm);
+                    ds = new DataSet();
+                    mda.Fill(ds);
+                    comm.ExecuteNonQuery();
+
+                    /*
+                    while (myReader.Read())
+                    {
+                        resultado += myReader.GetInt32(0).ToString();
+                        resultado += myReader.GetString(1) + "/";
+                    }
+                    resultado = resultado.Substring(0, resultado.Length - 1);
+                    */
+                }
+                catch (Exception ex)
+                {
+                    
+                }
+            }
+            else
+            {
+                
+            }
+        }
+        public string passwordUsuario(string correo)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Persona where Correo = @correo";
+                comm.Parameters.AddWithValue("@correo", correo);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                int contador = 0;
+                string pass = "";
+
+                while (myReader.Read())
+                {
+                    pass = myReader.GetString(6);
+                    contador++;
+                }
+                if (contador == 0)
+                {
+                    return "Error";
+                }
+                else
+                {
+                    pass = decodificar(pass);
+                    return pass;
+                }
+            }
+            return "Error";
         }
         public void cerrarConexion()
         {
