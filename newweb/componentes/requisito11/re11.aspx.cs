@@ -13,5 +13,10 @@ namespace newweb.componentes.requisito11
         {
 
         }
+
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

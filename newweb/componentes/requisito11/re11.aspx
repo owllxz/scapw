@@ -25,7 +25,7 @@
                 <asp:Label ID="Label2" runat="server" Text="ESTADO DE ENTREGA"></asp:Label>
                 </div>
 
-            <div class ="input-group mb-3">
+            <div class ="input-group mb-2">
                     <asp:Label ID="Label4" runat="server" CssClass="input-group-text" Text="ID ASIGNATURA"></asp:Label>
                     <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
@@ -34,6 +34,7 @@
                  <div>
 
                      <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn btn-secondary" />
+ 
                 </div>
              </div>
                 
