@@ -3,7 +3,7 @@ Requistos SCAP:
 Front End:
 
 - [ ] Control de acceso al sistema. (Luis)
-- [ ] Recuperación de clave de acceso. (Isidora)
+- [ x ] Recuperación de clave de acceso. (Isidora)
 - [ ] Carga de syllabus en el sistema. (Chris)
 - [ ] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
@@ -14,7 +14,7 @@ Front End:
 Back End:
 
 - [ ] Control de acceso al sistema. (Luis)
-- [ ] Recuperación de clave de acceso. (Isidora)
+- [ x ] Recuperación de clave de acceso. (Isidora)
 - [ ] Carga de syllabus en el sistema. (Chris)
 - [ ] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
