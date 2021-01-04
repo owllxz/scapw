@@ -19,11 +19,16 @@
              <div>
                 <span class="d-block p-2 bg-primary text-white mb-5">Horario de Clases</span>
                 <div class ="input-group mb-5">
+                    <asp:DropDownList ID="rolgrupo" CssClass="mx-auto btn btn-secondary dropdown-toggle mb-3" runat="server" OnSelectedIndexChanged="rolgrupo_SelectedIndexChanged">
+                    <asp:ListItem Text="curso 1" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="curso 2" Value="2"></asp:ListItem>
+                    </asp:DropDownList>
+
                     <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary mx-auto" Text="Mostrar Horario" OnClick="Button1_Click"/>
                 </div>
 
                 <div class ="input-group mb-3">
-                    <asp:Image ID="Image1" runat="server" src="C:\Users\C0DA\Desktop\CLASE1.jpg" Visible="False"/>
+                    <asp:Image ID="Image1" CssClass="mx-auto" runat="server"/>
                 </div>
                 
             </div>
