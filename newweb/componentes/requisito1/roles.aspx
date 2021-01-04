@@ -48,6 +48,8 @@
             </div>
             <asp:Button ID="Button7" runat="server" CssClass="btn btn-primary" Text="Asignar" OnClick="Button7_Click" />
             <br />
+            <br />
+            <br />
             <asp:Label ID="Label4" runat="server"></asp:Label>
         </div>
     </form>

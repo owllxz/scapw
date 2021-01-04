@@ -27,13 +27,15 @@
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox><br />
 
                 <asp:Label ID="Label3" runat="server" CssClass="input-group-text" Text="Contraseña"></asp:Label><br />
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" OnTextChanged="TextBox2_TextChanged"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox><br />
             </div>
              
             <div>   
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Ingresar" />
+                <br />
+                <br />
             </div>
-
+            <asp:Label ID="Label1" runat="server" CssClass="mt-2 mb-2 alert alert-success form-control" Text="Se ha iniciado sesion!" Visible="False"></asp:Label>
         </div>
         
     </form>

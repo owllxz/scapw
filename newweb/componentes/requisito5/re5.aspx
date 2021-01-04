@@ -14,45 +14,48 @@
         <div class="container">
            <span class="d-block p-2 bg-primary text-white mb-3">APROBACION DE SYLLABUS</span>
                 <div>
+                    <table class="table table-dark">
+                    <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Profesor</th>
+                    <th scope="col">Asignatura</th>
+                    <th scope="col">Archivo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% foreach (List<string> subList in myList) { %> <!-- loop through the list -->
+                    <tr>
+                    <th scope="row"><%= subList[0] %></th>
+                    <td><%= subList[1] %></td>
+                    <td><%= subList[2] %></td>
+                    <td><a type="button" href="<%= subList[3] %>" target="_blank" class="btn btn-link">Link</a></td>
+                    </tr>
+                    <% } %> <!--End the for loop -->                    
+                    </tbody>
+                    </table>
 
-                    <div class ="float-md-left">
-                         <asp:Label ID="Label1" runat="server" CssClass="input-group-text" Text="Lista de Syllabus entregados"></asp:Label>
-                        <asp:BulletedList ID="BulletedList1" runat="server" Height="317px" Width="248px" OnClick="BulletedList1_Click"></asp:BulletedList>
-                    </div>
+                    <div class="float-left mb-3" style="width: 300px" >
 
-                    <div class="mx-auto mb-3" style="width: 300px" >
-
-                        <asp:Label ID="Label2" runat="server" CssClass="input-group-text" Text="Profesor"></asp:Label>
-                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" OnTextChanged="TextBox5_TextChanged"></asp:TextBox><br>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                        ControlToValidate="TextBox1" runat="server"
+                        ErrorMessage="Solo Numeros."
+                        ValidationExpression="\d+">
+                        </asp:RegularExpressionValidator>
+                        <asp:Label ID="Label2" runat="server" CssClass="input-group-text" Text="ID"></asp:Label>
+                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox><br>
 
                         <asp:Label ID="Label4" runat="server" CssClass="input-group-text" Text="Observaciones"></asp:Label>
-                        <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control" OnTextChanged="TextBox5_TextChanged"></asp:TextBox><br>
+                        <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox><br>
                    
                         
-                    <div class="form-check mb-3">
-                         <div>
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="ButtonAprobado" value="aprobado" checked>
-                          <label class="form-check-label" for="exampleRadios1">
-                            APROBADO
-                          </label>
-                        </div>
-                        
                         <div class="mb-2">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="ButtonRechazado" value="rechazado">
-                          <label class="form-check-label" for="exampleRadios2">
-                            RECHAZADO
-                          </label>
+                            <asp:DropDownList ID="estadoGrupo" CssClass="btn btn-secondary dropdown-toggle mb-3" runat="server">
+                                <asp:ListItem Text="Aprobar" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Rechazar" Value="2"></asp:ListItem>
+                            </asp:DropDownList>            
                         </div>
-
-                        <div class="float-right mb-2">
-               
-                            <asp:Button ID="Button1" runat="server" Text="enviar" OnClick="Button1_Click" />
-                          
-                        </div>
-
-                     </div>   
-
-
+                        <asp:Button ID="Button1" CssClass="btn btn-success" runat="server" Text="Enviar" OnClick="Button1_Click" />    
                     </div>
 
 
