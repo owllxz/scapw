@@ -11,7 +11,10 @@ namespace newweb.componentes.requisito11
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (control.Control.estadoConexion == 0)
+            {
+                Response.Redirect("/componentes/requisito1/login.aspx");
+            }
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)

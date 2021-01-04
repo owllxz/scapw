@@ -134,6 +134,10 @@ namespace newweb.componentes.Req_4
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (control.Control.estadoConexion == 0)
+            {
+                Response.Redirect("/componentes/requisito1/login.aspx");
+            }
             if (!IsPostBack)
             {
                 Llenar_Lista();

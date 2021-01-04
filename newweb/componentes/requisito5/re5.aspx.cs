@@ -372,6 +372,10 @@ namespace newweb.componentes.requisito5
         public List<int> IDtabla = new List<int> { };
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (control.Control.estadoConexion == 0)
+            {
+                Response.Redirect("/componentes/requisito1/login.aspx");
+            }
             TextBox5.MaxLength = 249;
             cargarTabla();
         }
