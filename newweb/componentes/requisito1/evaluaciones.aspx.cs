@@ -12,6 +12,10 @@ namespace newweb.componentes.requisito1
         public List<List<string>> myList = new List<List<string>>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (control.Control.estadoConexion == 0)
+            {
+                Response.Redirect("/componentes/requisito1/login.aspx");
+            }
             cargarTabla();
         }
         public void cargarTabla()
@@ -21,6 +25,11 @@ namespace newweb.componentes.requisito1
 
             myList = con.evaluacionesPendientes();
             con.cerrarConexion();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
