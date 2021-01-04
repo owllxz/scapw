@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace newweb.componentes.requisito1
+namespace newweb.componentes.requisito5
 {
     public class conexion
     {
@@ -108,7 +108,7 @@ namespace newweb.componentes.requisito1
                 crearConexion();
 
 
-                if(contador == 0)
+                if (contador == 0)
                 {
                     return "No";
                 }
@@ -121,29 +121,29 @@ namespace newweb.componentes.requisito1
                         comm.Parameters.AddWithValue("@persona", personaID);
                         comm.Parameters.AddWithValue("@Aingreso", aingreso);
                     }
-                    else if(rol == "Director")
+                    else if (rol == "Director")
                     {
                         comm.CommandText = "Insert INTO Director(A_ingreso, Persona_FK) VALUES(@Aingreso, @persona)";
                         comm.Parameters.AddWithValue("@persona", personaID);
                         comm.Parameters.AddWithValue("@Aingreso", aingreso);
                     }
-                    else if(rol == "Profesor")
+                    else if (rol == "Profesor")
                     {
                         comm.CommandText = "Insert INTO Profesor(Persona_FK, A_ingreso) VALUES(@persona, @Aingreso)";
                         comm.Parameters.AddWithValue("@persona", personaID);
                         comm.Parameters.AddWithValue("@Aingreso", aingreso);
                     }
-                    else if(rol == "Administrador")
+                    else if (rol == "Administrador")
                     {
                         comm.CommandText = "Insert INTO Administrador(Persona_FK) VALUES(@persona)";
                         comm.Parameters.AddWithValue("@persona", personaID);
                     }
-                    else if(rol == "Apoderado")
+                    else if (rol == "Apoderado")
                     {
                         comm.CommandText = "Insert INTO Apoderado(Persona_FK) VALUES(@persona)";
                         comm.Parameters.AddWithValue("@persona", personaID);
                     }
-                    else if(rol == "Alumnos")
+                    else if (rol == "Alumnos")
                     {
                         comm.CommandText = "Insert INTO Alumnos(Persona_FK, A_ingreso, Apoderado_FK) VALUES(@persona, @Aingreso, @apoderado)";
                         comm.Parameters.AddWithValue("@persona", personaID);
@@ -198,49 +198,68 @@ namespace newweb.componentes.requisito1
                 }
                 catch (Exception ex)
                 {
-                    
+
                 }
             }
             else
             {
-                
+
             }
         }
-        public void SylabusSinAprobar()
+        public List<List<string>> SylabusSinAprobarID()
         {
+            List<int> IDtabla = new List<int> { };
+            List<string> ASIGNATURAtabla = new List<string> { };
+            List<int> idASIGNATURAtabla = new List<int> { };
+            List<string> ARCHIVOtabla = new List<string> { };
+            List<string> PROFESORtabla = new List<string> { };
+            List<List<string>> myList = new List<List<string>>();
             //string resultado = "";
             if (estado)
             {
-                try
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Archivos where estado = 0";
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                while (myReader.Read())
                 {
-                    MySqlCommand comm = conBD.CreateCommand();
-                    comm.CommandText = "Select * from Archivos where estado = 0";
-                    //MySqlDataReader myReader;
-                    //myReader = comm.ExecuteReader();
+                    IDtabla.Add(myReader.GetInt32(0));
+                    ARCHIVOtabla.Add(myReader.GetString(1));
+                    idASIGNATURAtabla.Add(myReader.GetInt32(2));
+                }
+                myReader.Close();
+                foreach(int ida in idASIGNATURAtabla)
+                {
+                    comm = conBD.CreateCommand();
+                    comm.CommandText = "Select * from Asignaturas where ID = @ida";
+                    comm.Parameters.AddWithValue("@ida", ida);
+                    myReader = comm.ExecuteReader();
 
-                    MySqlDataAdapter mda = new MySqlDataAdapter(comm);
-                    dsS = new DataSet();
-                    mda.Fill(dsS);
-                    comm.ExecuteNonQuery();
-
-                    /*
                     while (myReader.Read())
                     {
-                        resultado += myReader.GetInt32(0).ToString();
-                        resultado += myReader.GetString(1) + "/";
+                        ASIGNATURAtabla.Add(myReader.GetString(1));
+                        break;
                     }
-                    resultado = resultado.Substring(0, resultado.Length - 1);
-                    */
+                    myReader.Close();
                 }
-                catch (Exception ex)
+                comm = conBD.CreateCommand();
+                comm.CommandText = "SELECT Archivos.Profesor_FK, Profesor.ID, Persona.Nombres from Profesor JOIN Archivos ON Archivos.Profesor_FK = Profesor.ID JOIN Persona ON Persona.ID = Profesor.Persona_FK";
+                myReader = comm.ExecuteReader();
+
+                while (myReader.Read())
                 {
-
+                    PROFESORtabla.Add(myReader.GetString(2));
+                }
+                myReader.Close();
+                int i = 0;
+                while(i < IDtabla.Count)
+                {
+                    myList.Add(new List<string> {IDtabla[i].ToString(), PROFESORtabla[i].ToString(), ASIGNATURAtabla[i].ToString(), ARCHIVOtabla[i].ToString(), });
+                    i++;
                 }
             }
-            else
-            {
-
-            }
+            return myList;
         }
         public int verificarRol(string correo)
         {
@@ -303,125 +322,89 @@ namespace newweb.componentes.requisito1
             }
             return "Error";
         }
+        public void aprobar(int idArchivo)
+        {
+            if (estado)
+            {
+                try
+                {
+                    MySqlCommand comm = conBD.CreateCommand();
+                    comm = conBD.CreateCommand();
+                    comm.CommandText = "Update Archivos Set estado = 1 where ID = @idArchivo";
+
+                    comm.Parameters.AddWithValue("@idArchivo", idArchivo);
+                    comm.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
+        public void rechazar(int idArchivo, string observacion)
+        {
+            if (estado)
+            {
+                try
+                {
+                    MySqlCommand comm = conBD.CreateCommand();
+                    comm = conBD.CreateCommand();
+                    comm.CommandText = "Update Archivos Set estado = 2, observacion = @observacion where ID = @idArchivo";
+
+                    comm.Parameters.AddWithValue("@idArchivo", idArchivo);
+                    comm.Parameters.AddWithValue("@observacion", observacion);
+                    comm.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
         public void cerrarConexion()
         {
             conBD.Close();
         }
-        public List<List<string>> evaluacionesPendientes()
-        {
-            List<int> IDtabla = new List<int> { };
-            List<string> ASIGNATURAtabla = new List<string> { };
-            List<int> idASIGNATURAtabla = new List<int> { };
-            List<string> ARCHIVOtabla = new List<string> { };
-            List<string> NOMBREtabla = new List<string> { };
-            List<List<string>> myList = new List<List<string>>();
-            //string resultado = "";
-            if (estado)
-            {
-                MySqlCommand comm = conBD.CreateCommand();
-                comm.CommandText = "Select * from Evaluacion where estado = 0";
-                MySqlDataReader myReader;
-                myReader = comm.ExecuteReader();
-
-                while (myReader.Read())
-                {
-                    IDtabla.Add(myReader.GetInt32(0));
-                    ARCHIVOtabla.Add(myReader.GetString(1));
-                    NOMBREtabla.Add(myReader.GetString(2));
-                    idASIGNATURAtabla.Add(myReader.GetInt32(3));
-                }
-                myReader.Close();
-                foreach (int ida in idASIGNATURAtabla)
-                {
-                    comm = conBD.CreateCommand();
-                    comm.CommandText = "Select * from Asignaturas where ID = @ida";
-                    comm.Parameters.AddWithValue("@ida", ida);
-                    myReader = comm.ExecuteReader();
-
-                    while (myReader.Read())
-                    {
-                        ASIGNATURAtabla.Add(myReader.GetString(1));
-                        break;
-                    }
-                    myReader.Close();
-                }
-                int i = 0;
-                while (i < IDtabla.Count)
-                {
-                    myList.Add(new List<string> { IDtabla[i].ToString(), NOMBREtabla[i].ToString(), ASIGNATURAtabla[i].ToString(), ARCHIVOtabla[i].ToString(), });
-                    i++;
-                }
-            }
-            return myList;
-        }
     }
-    public partial class login : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
+        public List<List<string>> myList = new List<List<string>>();
+        public List<int> IDtabla = new List<int> { };
         protected void Page_Load(object sender, EventArgs e)
         {
+            TextBox5.MaxLength = 249;
+            cargarTabla();
         }
-        public static string decodificar(string _cadenaAdesencriptar)
-        {
-            string result = string.Empty;
-            byte[] decryted =
-            Convert.FromBase64String(_cadenaAdesencriptar);
-            System.Text.Encoding.Unicode.GetString(decryted, 0, decryted.ToArray().Length);
-            result = System.Text.Encoding.Unicode.GetString(decryted);
-            return result;
-        }
-
-        protected void Button1_Click1(object sender, EventArgs e)
-        {
+        public void cargarTabla()
+        {          
             conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
             string llamado = con.crearConexion();
 
-            string password = con.passwordUsuario(TextBox1.Text);
-            if (!String.IsNullOrEmpty(TextBox2.Text) && !String.IsNullOrEmpty(TextBox1.Text))
+            myList = con.SylabusSinAprobarID();
+            con.cerrarConexion();
+            //IDtabla = con.SylabusSinAprobarID();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if(estadoGrupo.SelectedItem.Text == "Aprobar")
             {
-                if (TextBox2.Text == password)
-                {
-                    con.cerrarConexion();
-
-                    //Verificar si el usuario tiene rol
-
-                    con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
-                    llamado = con.crearConexion();
-                    int estado = con.verificarRol(TextBox1.Text);
-
-                    if(estado == 1) {
-                        Label1.Text = "Se ha iniciado sesion!";
-                        Label1.CssClass = "mt-2 mb-2 alert alert-success form-control";
-                        Label1.Visible = true;
-                        con.cerrarConexion();
-
-                        //Redirije a pagina de requisitos
-                        Response.Redirect("roles.aspx");
-                    }
-                    else
-                    {
-                        Label1.Text = "Cuenta no habilitada!";
-                        Label1.CssClass = "mt-2 mb-2 alert alert-danger form-control";
-                        Label1.Visible = true;
-                        con.cerrarConexion();
-                    }
-
-                }
-                else
-                {
-                    Label1.Text = "Datos Incorrectos!";
-                    Label1.CssClass = "mt-2 mb-2 alert alert-danger form-control";
-                    Label1.Visible = true;
-                    con.cerrarConexion();
-                }
-            }
-            else
-            {
-                Label1.Text = "Faltan datos!";
-                Label1.CssClass = "mt-2 mb-2 alert alert-warning form-control";
-                Label1.Visible = true;
+                conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                string llamado = con.crearConexion();
+                con.aprobar(Int32.Parse(TextBox1.Text));
+                cargarTabla();
                 con.cerrarConexion();
             }
+            else if(estadoGrupo.SelectedItem.Text ==  "Rechazar")
+            {
+                conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                string llamado = con.crearConexion();
+                con.rechazar(Int32.Parse(TextBox1.Text), TextBox5.Text.ToString());
+                cargarTabla();
+                con.cerrarConexion();
 
+                //Enviar correo con observacion al profesor
+            }
         }
 
     }

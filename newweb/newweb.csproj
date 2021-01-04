@@ -64,6 +64,21 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -114,12 +129,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="componentes\requisito11\re11.aspx" />
     <Content Include="componentes\requisito12\re12.aspx" />
     <Content Include="componentes\requisito12\StyleSheet.css" />
     <Content Include="componentes\Req_4\Req_4.aspx" />
+    <Content Include="componentes\requisito1\evaluaciones.aspx" />
+    <Content Include="componentes\requisito1\requisito2.aspx" />
+    <Content Include="componentes\requisito1\roles.aspx" />
+    <Content Include="componentes\requisito1\menu.aspx" />
+    <Content Include="componentes\requisito5\re5.aspx" />
     <Content Include="componentes\WebForm2.aspx" />
     <Content Include="componentes\requisito.aspx" />
     <Content Include="componentes\requisito1\login.aspx" />
+    <Content Include="componentes\Req_4\Req_4.aspx" />
     <Content Include="componentes\requisito1\register.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -139,6 +161,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="componentes\requisito1\ProcessRequest.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -184,6 +207,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="componentes\requisito11\re11.aspx.cs">
+      <DependentUpon>re11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito11\re11.aspx.designer.cs">
+      <DependentUpon>re11.aspx</DependentUpon>
+    </Compile>
     <Compile Include="componentes\requisito12\re12.aspx.cs">
       <DependentUpon>re12.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,6 +226,42 @@
     </Compile>
     <Compile Include="componentes\Req_4\Req_4.aspx.designer.cs">
       <DependentUpon>Req_4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\evaluaciones.aspx.cs">
+      <DependentUpon>evaluaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\evaluaciones.aspx.designer.cs">
+      <DependentUpon>evaluaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito1\requisito2.aspx.cs">
+      <DependentUpon>requisito2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\requisito2.aspx.designer.cs">
+      <DependentUpon>requisito2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito1\roles.aspx.cs">
+      <DependentUpon>roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\roles.aspx.designer.cs">
+      <DependentUpon>roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito1\menu.aspx.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\menu.aspx.designer.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito5\re5.aspx.cs">
+      <DependentUpon>re5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito5\re5.aspx.designer.cs">
+      <DependentUpon>re5.aspx</DependentUpon>
     </Compile>
     <Compile Include="componentes\WebForm2.aspx.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
@@ -215,8 +281,15 @@
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="componentes\Req_4\Req_4.aspx.cs">
+      <DependentUpon>Req_4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="componentes\requisito1\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\Req_4\Req_4.aspx.designer.cs">
+      <DependentUpon>Req_4.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
