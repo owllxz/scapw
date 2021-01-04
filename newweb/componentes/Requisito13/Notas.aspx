@@ -15,11 +15,8 @@
 
     <form id="form10" runat="server">
         <div style="padding-bottom:50px">
-            <asp:label runat="server" id="Alumno" ></asp:label>
-            <asp:DropDownList ID="DropDownList1" runat="server" Height="55px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="156px" AutoPostBack="True">
-                <asp:ListItem>Holaa</asp:ListItem>
-                <asp:ListItem>Hola22a</asp:ListItem>
-                <asp:ListItem>Hola31231a</asp:ListItem>
+            <asp:label runat="server" id="Alumno"></asp:label>
+            <asp:DropDownList ID="DropDownList1" runat="server" Height="55px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="204px" AutoPostBack="True" style="margin-left:182px; margin-top:30px">
             </asp:DropDownList>
         </div>
         <hr />
@@ -53,6 +50,22 @@
             <asp:Textbox runat="server" style="margin-left:100px" id="Text11" placeholder="Nota 1" type="text" readonly="True" />
             <asp:Textbox runat="server" style="margin-left:100px" id="Text12" placeholder="Nota 1" type="text" readonly="True" />
         </div>
+        <div style="padding-bottom:25px">
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text13" placeholder="Nota 1" type="text" readonly="True"/>
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text14" placeholder="Nota 1" type="text" readonly="True" />
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text15" placeholder="Nota 1" type="text" readonly="True" />
+        </div>
+        <div style="padding-bottom:25px">
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text16" placeholder="Nota 1" type="text" readonly="True"/>
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text17" placeholder="Nota 1" type="text" readonly="True" />
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text18" placeholder="Nota 1" type="text" readonly="True" />
+        </div>
+        <div style="padding-bottom:25px">
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text19" placeholder="Nota 1" type="text" readonly="True"/>
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text20" placeholder="Nota 1" type="text" readonly="True" />
+            <asp:Textbox runat="server" style="margin-left:100px" id="Text21" placeholder="Nota 1" type="text" readonly="True" />
+        </div>
+
         <hr />
     </form>
 </body>
