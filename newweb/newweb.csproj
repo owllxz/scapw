@@ -128,6 +128,7 @@
     <Content Include="componentes\requisito12\StyleSheet.css" />
     <Content Include="componentes\requisito1\requisito2.aspx" />
     <Content Include="componentes\requisito1\roles.aspx" />
+    <Content Include="componentes\requisito1\menu.aspx" />
     <Content Include="componentes\requisito5\re5.aspx" />
     <Content Include="componentes\WebForm2.aspx" />
     <Content Include="componentes\requisito.aspx" />
@@ -225,6 +226,13 @@
     </Compile>
     <Compile Include="componentes\requisito1\roles.aspx.designer.cs">
       <DependentUpon>roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="componentes\requisito1\menu.aspx.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="componentes\requisito1\menu.aspx.designer.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
     </Compile>
     <Compile Include="componentes\requisito5\re5.aspx.cs">
       <DependentUpon>re5.aspx</DependentUpon>

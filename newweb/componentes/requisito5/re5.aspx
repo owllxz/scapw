@@ -22,6 +22,8 @@
 
                     <div class="mx-auto mb-3" style="width: 300px" >
 
+                        <asp:Label ID="Label2" runat="server" CssClass="input-group-text" Text="Profesor"></asp:Label>
+                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" OnTextChanged="TextBox5_TextChanged"></asp:TextBox><br>
 
                         <asp:Label ID="Label4" runat="server" CssClass="input-group-text" Text="Observaciones"></asp:Label>
                         <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control" OnTextChanged="TextBox5_TextChanged"></asp:TextBox><br>
