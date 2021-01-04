@@ -17,13 +17,13 @@
     <form id="form1" runat="server">
             <div Class="container">
              <div>
-                <span class="d-block p-2 bg-primary text-white mb-3">Mostrar Horario</span>
-                <div class ="input-group mb-3">
-                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Crear" OnClick="Button1_Click"/>
+                <span class="d-block p-2 bg-primary text-white mb-5">Horario de Clases</span>
+                <div class ="input-group mb-5">
+                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary mx-auto" Text="Mostrar Horario" OnClick="Button1_Click"/>
                 </div>
 
                 <div class ="input-group mb-3">
-                    <asp:Image ID="Image1" runat="server" src="C:\Users\C0DA\Desktop\HORARIO 1.png" Visible="False"/>
+                    <asp:Image ID="Image1" runat="server" src="C:\Users\C0DA\Desktop\CLASE1.jpg" Visible="False"/>
                 </div>
                 
             </div>
