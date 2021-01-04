@@ -12,9 +12,16 @@
 <body>
     <form id="form1" runat="server">
         <div class="container mx-auto mb-2">
-
-            <asp:Label ID="Label1" runat="server" Text="menu de requisitos"></asp:Label>
-            <asp:BulletedList ID="BulletedList1" runat="server" Height="401px" Width="1231px"></asp:BulletedList>
+            <span class="d-block p-2 bg-primary text-white mb-3">Menu de requisitos:</span>
+            <div class="btn-group-vertical">
+                <asp:Button ID="Button1" CssClass="btn btn-danger mb-2" runat="server" Text="Recuperación de clave de acceso" OnClick="Button1_Click" />
+                <asp:Button ID="Button2" CssClass="btn btn-secondary mb-2" runat="server" Text="Carga de syllabus en el sistema" OnClick="Button2_Click" />
+                <asp:Button ID="Button3" CssClass="btn btn-success mb-2" runat="server" Text="Aprobación del syllabus" OnClick="Button3_Click" />
+                <asp:Button ID="Button4" CssClass="btn btn-primary mb-2" runat="server" Text="Entrega trabajos de alumnos" OnClick="Button4_Click" />
+                <asp:Button ID="Button5" CssClass="btn btn-warning mb-2" runat="server" Text="Button" />
+                <asp:Button ID="Button6" CssClass="btn btn-info mb-2" runat="server" Text="Button" />
+                <asp:Button ID="Button7" CssClass="btn btn-light mb-2" runat="server" Text="Button" />
+            </div>
         </div>
     </form>
 </body>

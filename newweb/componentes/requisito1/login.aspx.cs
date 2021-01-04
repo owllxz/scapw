@@ -12,6 +12,7 @@ namespace newweb.componentes.requisito1
     public class conexion
     {
         public static DataSet ds;
+        public static DataSet dsS;
         string servidor;
         string puerto;
         string usuario;
@@ -205,6 +206,42 @@ namespace newweb.componentes.requisito1
                 
             }
         }
+        public void SylabusSinAprobar()
+        {
+            //string resultado = "";
+            if (estado)
+            {
+                try
+                {
+                    MySqlCommand comm = conBD.CreateCommand();
+                    comm.CommandText = "Select * from Archivos where estado = 0";
+                    //MySqlDataReader myReader;
+                    //myReader = comm.ExecuteReader();
+
+                    MySqlDataAdapter mda = new MySqlDataAdapter(comm);
+                    dsS = new DataSet();
+                    mda.Fill(dsS);
+                    comm.ExecuteNonQuery();
+
+                    /*
+                    while (myReader.Read())
+                    {
+                        resultado += myReader.GetInt32(0).ToString();
+                        resultado += myReader.GetString(1) + "/";
+                    }
+                    resultado = resultado.Substring(0, resultado.Length - 1);
+                    */
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            else
+            {
+
+            }
+        }
         public int verificarRol(string correo)
         {
             if (estado)
@@ -269,6 +306,53 @@ namespace newweb.componentes.requisito1
         public void cerrarConexion()
         {
             conBD.Close();
+        }
+        public List<List<string>> evaluacionesPendientes()
+        {
+            List<int> IDtabla = new List<int> { };
+            List<string> ASIGNATURAtabla = new List<string> { };
+            List<int> idASIGNATURAtabla = new List<int> { };
+            List<string> ARCHIVOtabla = new List<string> { };
+            List<string> NOMBREtabla = new List<string> { };
+            List<List<string>> myList = new List<List<string>>();
+            //string resultado = "";
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Evaluacion where estado = 0";
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    IDtabla.Add(myReader.GetInt32(0));
+                    ARCHIVOtabla.Add(myReader.GetString(1));
+                    NOMBREtabla.Add(myReader.GetString(2));
+                    idASIGNATURAtabla.Add(myReader.GetInt32(3));
+                }
+                myReader.Close();
+                foreach (int ida in idASIGNATURAtabla)
+                {
+                    comm = conBD.CreateCommand();
+                    comm.CommandText = "Select * from Asignaturas where ID = @ida";
+                    comm.Parameters.AddWithValue("@ida", ida);
+                    myReader = comm.ExecuteReader();
+
+                    while (myReader.Read())
+                    {
+                        ASIGNATURAtabla.Add(myReader.GetString(1));
+                        break;
+                    }
+                    myReader.Close();
+                }
+                int i = 0;
+                while (i < IDtabla.Count)
+                {
+                    myList.Add(new List<string> { IDtabla[i].ToString(), NOMBREtabla[i].ToString(), ASIGNATURAtabla[i].ToString(), ARCHIVOtabla[i].ToString(), });
+                    i++;
+                }
+            }
+            return myList;
         }
     }
     public partial class login : System.Web.UI.Page
