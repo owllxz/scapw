@@ -11,7 +11,7 @@ namespace newweb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect("/componentes/requisito1/login.aspx");
         }
     }
 }
