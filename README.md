@@ -7,7 +7,7 @@ Front End:
 - [x] Carga de syllabus en el sistema. (Chris)
 - [x] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
-- [ ] Visualización de horarios. (Felipe)
+- [x] Visualización de horarios. (Felipe)
 - [ ] Visualización de notas. (Javier)
 - [ ] Control de asistencia. (Luis)
 
@@ -18,7 +18,7 @@ Back End:
 - [x] Carga de syllabus en el sistema. (Chris)
 - [x] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
-- [ ] Visualización de horarios. (Felipe)
+- [x] Visualización de horarios. (Felipe)
 - [ ] Visualización de notas. (Javier)
 - [ ] Control de asistencia. (Luis)
 
