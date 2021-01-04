@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Net;
+using System.Text;
 
 namespace newweb.componentes.Req_4
 {
@@ -74,6 +76,55 @@ namespace newweb.componentes.Req_4
                 return "La conexion no esta abierta";
             }
         }
+        public int obtenerIDAsignatura(string asignatura)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Asignaturas where Nombre = @asignatura";
+                comm.Parameters.AddWithValue("@asignatura", asignatura);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    int a = myReader.GetInt32(0);
+                    myReader.Close();
+                    return a;
+                    break;
+                }
+                return -1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        public string crearArchivo(string url, int a_fk, int p_fk)
+        {
+            if (estado)
+            {
+                try
+                {
+                    MySqlCommand comm = conBD.CreateCommand();
+                    comm.CommandText = "Insert INTO Archivos(Archivo, Asignatura_FK,Profesor_FK) VALUES(@Url, @a_fk, @p_fk)";
+                    comm.Parameters.AddWithValue("@Url", url);
+                    comm.Parameters.AddWithValue("@a_fk", a_fk);
+                    comm.Parameters.AddWithValue("@p_fk", p_fk);
+                    comm.ExecuteNonQuery();
+                    return "Usuario creado correctamente";
+                }
+                catch (Exception ex)
+                {
+                    return ex.ToString();
+                }
+            }
+            else
+            {
+                return "La conexion no esta abierta";
+            }
+        }
         public void cerrarConexion()
         {
             conBD.Close();
@@ -90,18 +141,15 @@ namespace newweb.componentes.Req_4
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Byte[] Archivo = null;
-            string nombreArchivo = string.Empty;
-            string extensionArchivo = string.Empty;
-            if (Archivo_Syllabus.HasFile == true)
-            {
-                using (BinaryReader reader = new BinaryReader(Archivo_Syllabus.PostedFile.InputStream))
-                {
-                    Archivo = reader.ReadBytes(Archivo_Syllabus.PostedFile.ContentLength);
-                }
-                _ = Path.GetFileNameWithoutExtension(Archivo_Syllabus.FileName);
-                extensionArchivo = Path.GetExtension(Archivo_Syllabus.FileName);
-            }
+            string url = FTPUpload();
+            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            con.crearConexion();
+            //con.crearArchivo(url, );
+            int idAsignatura = con.obtenerIDAsignatura(Lista_Materias.SelectedItem.Text);
+
+            label_vacio.Visible = true;
+            label_vacio.Text =  con.crearArchivo(url, idAsignatura, 2);
+            con.cerrarConexion();
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -124,6 +172,55 @@ namespace newweb.componentes.Req_4
             string id_asignatura = Lista_Materias.DataValueField;
             Lista_Materias.DataBind();
             con.cerrarConexion();
+        }
+        protected string FTPUpload()
+        {
+            //FTP Server URL.
+            string ftp = "ftp://camifel.cl/";
+
+            //FTP Folder name. Leave blank if you want to upload to root folder.
+            string ftpFolder = "";
+
+            byte[] fileBytes = null;
+
+            //Read the FileName and convert it to Byte array.
+            string fileName = Path.GetFileName(Archivo_Syllabus.FileName);
+            using (StreamReader fileStream = new StreamReader(Archivo_Syllabus.PostedFile.InputStream))
+            {
+                fileBytes = Encoding.UTF8.GetBytes(fileStream.ReadToEnd());
+                fileStream.Close();
+            }
+
+            try
+            {
+                //Create FTP Request.
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + ftpFolder + fileName);
+                request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                //Enter FTP Server credentials.
+                request.Credentials = new NetworkCredential("scap@camifel.cl", "Scap123am.");
+                request.ContentLength = fileBytes.Length;
+                request.UsePassive = true;
+                request.UseBinary = true;
+                request.ServicePoint.ConnectionLimit = fileBytes.Length;
+                request.EnableSsl = false;
+
+                using (Stream requestStream = request.GetRequestStream())
+                {
+                    requestStream.Write(fileBytes, 0, fileBytes.Length);
+                    requestStream.Close();
+                }
+
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                //label_vacio.Visible = true;
+                response.Close();
+                return "http://camifel.cl/scap/" + fileName;
+                //label_vacio.Text += urlBD+ " uploaded.<br />";
+            }
+            catch (WebException ex)
+            {
+                throw new Exception((ex.Response as FtpWebResponse).StatusDescription);
+            }
         }
     }
 }
