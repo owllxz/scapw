@@ -4,7 +4,7 @@ Front End:
 
 - [ x ] Control de acceso al sistema. (Luis)
 - [ x ] Recuperación de clave de acceso. (Isidora)
-- [ ] Carga de syllabus en el sistema. (Chris)
+- [ x ] Carga de syllabus en el sistema. (Chris)
 - [ x ] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
 - [ ] Visualización de horarios. (Felipe)
@@ -15,7 +15,7 @@ Back End:
 
 - [ x ] Control de acceso al sistema. (Luis)
 - [ x ] Recuperación de clave de acceso. (Isidora)
-- [ ] Carga de syllabus en el sistema. (Chris)
+- [ x ] Carga de syllabus en el sistema. (Chris)
 - [ x ] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
 - [ ] Visualización de horarios. (Felipe)
