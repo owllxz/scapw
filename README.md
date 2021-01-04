@@ -8,7 +8,7 @@ Front End:
 - [x] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
 - [ ] Visualización de horarios. (Felipe)
-- [ ] Visualización de notas. (Javier)
+- [x] Visualización de notas. (Javier)
 - [ ] Control de asistencia. (Luis)
 
 Back End:
@@ -19,7 +19,7 @@ Back End:
 - [x] Aprobación del syllabus. (Todos)
 - [ ] Entrega trabajos de alumnos. (Todos)
 - [ ] Visualización de horarios. (Felipe)
-- [ ] Visualización de notas. (Javier)
+- [x] Visualización de notas. (Javier)
 - [ ] Control de asistencia. (Luis)
 
 ### Base Datos:
