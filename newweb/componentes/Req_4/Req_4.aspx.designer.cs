@@ -24,58 +24,58 @@ namespace newweb.componentes.Req_4
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control Text_NombreProfe.
+        /// Control label_vacio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Text_NombreProfe;
+        protected global::System.Web.UI.WebControls.Label label_vacio;
 
         /// <summary>
-        /// Control Text_Materia.
+        /// Control Label4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Text_Materia;
+        protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// Control Text_Semestre.
+        /// Control Lista_Materias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Text_Semestre;
+        protected global::System.Web.UI.WebControls.ListBox Lista_Materias;
 
         /// <summary>
-        /// Control Text_Curso.
+        /// Control Button2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Text_Curso;
+        protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// Control Password_profe.
+        /// Control texto_prueba.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Password_profe;
+        protected global::System.Web.UI.WebControls.Label texto_prueba;
 
         /// <summary>
-        /// Control Text_NombreSyllabus.
+        /// Control Label3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Text_NombreSyllabus;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
         /// Control Archivo_Syllabus.
@@ -96,12 +96,12 @@ namespace newweb.componentes.Req_4
         protected global::System.Web.UI.WebControls.Button Boton_Subir;
 
         /// <summary>
-        /// Control Panel1.
+        /// Control Conex.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Label Conex;
     }
 }
