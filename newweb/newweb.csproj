@@ -132,7 +132,6 @@
     <Content Include="About.aspx" />
     <Content Include="componentes\requisito11\re11.aspx" />
     <Content Include="componentes\requisito12\re12.aspx" />
-    <Content Include="componentes\requisito12\StyleSheet.css" />
     <Content Include="componentes\requisito15\re15.aspx" />
     <Content Include="componentes\Req_4\Req_4.aspx" />
     <Content Include="componentes\requisito1\evaluaciones.aspx" />
