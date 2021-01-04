@@ -84,7 +84,7 @@ namespace newweb.componentes.requisito1
             result = System.Text.Encoding.Unicode.GetString(decryted);
             return result;
         }
-        public string insertarRol(string rol, int personaID, int apoderadoID, string aingreso)
+        public string insertarRol(string rol, int personaID, int apoderadoID, int aingreso)
         {
             if (estado)
             {
@@ -154,6 +154,12 @@ namespace newweb.componentes.requisito1
                         return "Rol no existe";
                     }
                     comm.ExecuteNonQuery();
+
+                    comm = conBD.CreateCommand();
+                    comm.CommandText = "Update Persona Set rol = 1 where ID = @persona";
+
+                    comm.Parameters.AddWithValue("@persona", personaID);
+                    comm.ExecuteNonQuery();
                 }
 
                 return "Rol asignado";
@@ -198,6 +204,36 @@ namespace newweb.componentes.requisito1
             {
                 
             }
+        }
+        public int verificarRol(string correo)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Persona where Correo = @correo";
+                comm.Parameters.AddWithValue("@correo", correo);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                int contador = 0;
+                int estado = 0;
+
+                while (myReader.Read())
+                {
+                    estado = myReader.GetInt32(7);
+                    contador++;
+                }
+                if (contador == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return estado;
+                }
+            }
+            return 0;
         }
         public string passwordUsuario(string correo)
         {
@@ -252,6 +288,55 @@ namespace newweb.componentes.requisito1
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
+            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            string llamado = con.crearConexion();
+
+            string password = con.passwordUsuario(TextBox1.Text);
+            if (!String.IsNullOrEmpty(TextBox2.Text) && !String.IsNullOrEmpty(TextBox1.Text))
+            {
+                if (TextBox2.Text == password)
+                {
+                    con.cerrarConexion();
+
+                    //Verificar si el usuario tiene rol
+
+                    con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                    llamado = con.crearConexion();
+                    int estado = con.verificarRol(TextBox1.Text);
+
+                    if(estado == 1) {
+                        Label1.Text = "Se ha iniciado sesion!";
+                        Label1.CssClass = "mt-2 mb-2 alert alert-success form-control";
+                        Label1.Visible = true;
+                        con.cerrarConexion();
+
+                        //Redirije a pagina de requisitos
+                        Response.Redirect("roles.aspx");
+                    }
+                    else
+                    {
+                        Label1.Text = "Cuenta no habilitada!";
+                        Label1.CssClass = "mt-2 mb-2 alert alert-danger form-control";
+                        Label1.Visible = true;
+                        con.cerrarConexion();
+                    }
+
+                }
+                else
+                {
+                    Label1.Text = "Datos Incorrectos!";
+                    Label1.CssClass = "mt-2 mb-2 alert alert-danger form-control";
+                    Label1.Visible = true;
+                    con.cerrarConexion();
+                }
+            }
+            else
+            {
+                Label1.Text = "Faltan datos!";
+                Label1.CssClass = "mt-2 mb-2 alert alert-warning form-control";
+                Label1.Visible = true;
+                con.cerrarConexion();
+            }
 
         }
 
