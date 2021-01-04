@@ -46,5 +46,15 @@ namespace newweb.componentes.requisito1
         {
             Response.Redirect("/componentes/requisito12/re12.aspx");
         }
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/componentes/requisito13/Notas.aspx");
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

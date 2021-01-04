@@ -232,7 +232,7 @@ namespace newweb.componentes.requisito1
                     resultado = resultado.Substring(0, resultado.Length - 1);
                     */
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
