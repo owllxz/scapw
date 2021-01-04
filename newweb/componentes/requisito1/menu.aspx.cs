@@ -21,7 +21,7 @@ namespace newweb.componentes.requisito1
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            
+            Response.Redirect("/componentes/Req_4/Req_4.aspx");
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -32,6 +32,11 @@ namespace newweb.componentes.requisito1
         protected void Button4_Click(object sender, EventArgs e)
         {
             Response.Redirect("/componentes/requisito11/re11.aspx");
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/componentes/requisito12/re12.aspx");
         }
     }
 }

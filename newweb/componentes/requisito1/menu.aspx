@@ -18,7 +18,7 @@
                 <asp:Button ID="Button2" CssClass="btn btn-secondary mb-2" runat="server" Text="Carga de syllabus en el sistema" OnClick="Button2_Click" />
                 <asp:Button ID="Button3" CssClass="btn btn-success mb-2" runat="server" Text="Aprobación del syllabus" OnClick="Button3_Click" />
                 <asp:Button ID="Button4" CssClass="btn btn-primary mb-2" runat="server" Text="Entrega trabajos de alumnos" OnClick="Button4_Click" />
-                <asp:Button ID="Button5" CssClass="btn btn-warning mb-2" runat="server" Text="Button" />
+                <asp:Button ID="Button5" CssClass="btn btn-warning mb-2" runat="server" Text="Visualización de horarios" OnClick="Button5_Click" />
                 <asp:Button ID="Button6" CssClass="btn btn-info mb-2" runat="server" Text="Button" />
                 <asp:Button ID="Button7" CssClass="btn btn-light mb-2" runat="server" Text="Button" />
             </div>
