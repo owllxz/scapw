@@ -9,7 +9,7 @@ Front End:
 - [x] Entrega trabajos de alumnos. (Todos)
 - [x] Visualización de horarios. (Felipe)
 - [x] Visualización de notas. (Javier)
-- [ ] Control de asistencia. (Luis)
+- [x] Control de asistencia. (Luis)
 
 Back End:
 
@@ -20,7 +20,7 @@ Back End:
 - [x] Entrega trabajos de alumnos. (Todos)
 - [x] Visualización de horarios. (Felipe)
 - [x] Visualización de notas. (Javier)
-- [ ] Control de asistencia. (Luis)
+- [x] Control de asistencia. (Luis)
 
 ### Base Datos:
 
