@@ -65,7 +65,7 @@ namespace newweb.componentes.requisito12
                         int usuario = -1;
                         MySqlCommand comm = conBD.CreateCommand();
                         comm.CommandText = "Select * from Persona where Rut = @rut";
-                        comm.Parameters.AddWithValue("rut", rut);
+                        comm.Parameters.AddWithValue("@rut", rut);
 
                         MySqlDataReader myReader = comm.ExecuteReader();
 
@@ -94,7 +94,7 @@ namespace newweb.componentes.requisito12
                     {
                         MySqlCommand comm = conBD.CreateCommand();
                         comm.CommandText = "SELECT Horario.Archivo FROM Persona_Horario JOIN Horario ON Horario.ID = Persona_Horario.Horario_FK WHERE Persona_Horario.Persona_FK = @ID";
-                        comm.Parameters.AddWithValue("ID", ID);
+                        comm.Parameters.AddWithValue("@ID", ID);
 
                         MySqlDataReader myReader = comm.ExecuteReader();
 

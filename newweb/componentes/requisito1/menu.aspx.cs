@@ -39,7 +39,7 @@ namespace newweb.componentes.requisito1
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/componentes/requisito11/re11.aspx");
+            Response.Redirect("/componentes/requisito1/evaluaciones.aspx");
         }
 
         protected void Button5_Click(object sender, EventArgs e)

@@ -14,9 +14,13 @@
         <div class="container">
 
             <span class="d-block p-2 bg-primary text-white mb-3">CARGA DE TAREAS </span>
-
+            <div class="input-group mb-3">
+                <asp:Label ID="Label3" runat="server" CssClass="input-group-text" Text="ID"></asp:Label>
+                <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
+            </div>
+            <br />
             <asp:Label ID="Label5" runat="server" Text="Fecha Actual: "></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server" Enabled="False"></asp:TextBox>
+            <asp:TextBox ID="TextBox3" CssClass="form-control" runat="server" Enabled="False"></asp:TextBox>
             <br />
             <br />
              <div class ="input-group mb-3">
@@ -39,6 +43,9 @@
                  <div>
 
                      <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn btn-secondary" />
+ 
+                     <br />
+                     <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" OnClick="Button1_Click" Text="Entregar" />
  
                 </div>
              </div>
