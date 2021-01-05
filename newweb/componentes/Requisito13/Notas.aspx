@@ -16,12 +16,11 @@
     <form id="form10" runat="server">
         <div class="container mx-auto mb-2">
             <asp:label runat="server" id="Alumno"></asp:label>
-            <asp:DropDownList ID="DropDownList1" runat="server" Height="55px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="204px" AutoPostBack="True" style="margin-left:182px; margin-top:30px">
+            <asp:DropDownList ID="DropDownList1" runat="server" Height="55px" Width="204px" AutoPostBack="True" style="margin-left:182px; margin-top:30px">
             </asp:DropDownList>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Cargar" CssClass="btn btn-dark" />
         <hr />
         <div style="padding-bottom:30px; margin-left:10px">
-             <asp:label runat="server" id="Asignatura" style="margin-left:41px; width: 197px;"></asp:label>
                  </div>
         <div style="padding-bottom:25px">
 
@@ -44,8 +43,33 @@
             <% } %> <!--End the for loop -->                    
             </tbody>
             </table>
-        </div>
         <hr />
+        <div class="input-group mb-3">
+            <asp:Label ID="Label1" runat="server" CssClass="input-group-text" Text="Rut"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+        <asp:Button ID="Button2" runat="server" CssClass="btn btn-primary" Text="Buscar" OnClick="Button2_Click"/>
+            <table class="table">
+            <thead class="thead-dark">
+            <tr>
+            <th scope="col">Asignatura</th>
+            <th scope="col">Actividad</th>
+            <th scope="col">Ponderacion</th>
+            <th scope="col">Nota</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% foreach (List<string> subList2 in myList2) { %> <!-- loop through the list -->
+            <tr>
+            <td><%= subList2[0] %></td>
+            <td><%= subList2[1] %></td>
+            <td><%= subList2[2] %></td>
+            <td><%= subList2[3] %></td>
+            </tr>
+            <% } %> <!--End the for loop -->                    
+            </tbody>
+            </table>
+        </div>
     </form>
 </body>
 </html>
