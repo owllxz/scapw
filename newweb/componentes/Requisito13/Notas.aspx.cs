@@ -224,7 +224,7 @@ namespace newweb.componentes.Requisito13
                         int usuario = -1;
                         MySqlCommand comm = conBD.CreateCommand();
                         comm.CommandText = "Select * from Persona where Rut = @rut";
-                        comm.Parameters.AddWithValue("rut", rut);
+                        comm.Parameters.AddWithValue("@rut", rut);
 
                         MySqlDataReader myReader = comm.ExecuteReader();
 
