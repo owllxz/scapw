@@ -209,7 +209,7 @@ namespace newweb.componentes.requisito11
             conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
             con.crearConexion();
 
-            Label2.Text =  con.crearArchivo(url,control.Control.rolID, Int32.Parse(TextBox4.Text));
+            con.crearArchivo(url,control.Control.rolID, Int32.Parse(TextBox4.Text));
             con.cerrarConexion();
 
             Response.Redirect("/componentes/requisito1/menu.aspx");

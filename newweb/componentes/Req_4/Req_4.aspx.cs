@@ -107,13 +107,17 @@ namespace newweb.componentes.Req_4
             {
                 try
                 {
+                    DateTime theDate = DateTime.Now;
+                    string date = theDate.ToString("yyyy-MM-dd H:mm:ss");
+                    DateTime fecha = Convert.ToDateTime(date);
                     MySqlCommand comm = conBD.CreateCommand();
-                    comm.CommandText = "Insert INTO Archivos(Archivo, Asignatura_FK,Profesor_FK) VALUES(@Url, @a_fk, @p_fk)";
+                    comm.CommandText = "Insert INTO Archivos(Archivo, Asignatura_FK,Profesor_FK, fecha) VALUES(@Url, @a_fk, @p_fk, @fecha)";
                     comm.Parameters.AddWithValue("@Url", url);
                     comm.Parameters.AddWithValue("@a_fk", a_fk);
-                    comm.Parameters.AddWithValue("@p_fk", p_fk);
+                    comm.Parameters.AddWithValue("@p_fk", control.Control.rolID);
+                    comm.Parameters.AddWithValue("@fecha", fecha);
                     comm.ExecuteNonQuery();
-                    return "Usuario creado correctamente";
+                    return "Archivo subido correctamente";
                 }
                 catch (Exception ex)
                 {
@@ -154,6 +158,7 @@ namespace newweb.componentes.Req_4
             label_vacio.Visible = true;
             label_vacio.Text =  con.crearArchivo(url, idAsignatura, 2);
             con.cerrarConexion();
+            Response.Redirect("/componentes/requisito1/menu.aspx");
         }
         protected void Button2_Click(object sender, EventArgs e)
         {

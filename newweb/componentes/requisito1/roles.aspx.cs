@@ -11,6 +11,10 @@ namespace newweb.componentes.requisito1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (control.Control.estadoConexion == 0)
+            {
+                Response.Redirect("/componentes/requisito1/login.aspx");
+            }
             cargarTabla();
         }
         public void cargarTabla()

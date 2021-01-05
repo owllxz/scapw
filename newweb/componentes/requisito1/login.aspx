@@ -27,11 +27,13 @@
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox><br />
 
                 <asp:Label ID="Label3" runat="server" CssClass="input-group-text" Text="Contraseña"></asp:Label><br />
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox><br />
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Button ID="Button2" runat="server" CssClass="btn btn-link float-right" OnClick="Button2_Click" Text="Recuperar Clave" />
+                <br />
             </div>
              
             <div>   
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Ingresar" />
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Ingresar" CssClass="btn btn-primary" />
                 <br />
                 <br />
             </div>
