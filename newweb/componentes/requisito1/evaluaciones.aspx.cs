@@ -12,7 +12,7 @@ namespace newweb.componentes.requisito1
         public List<List<string>> myList = new List<List<string>>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (control.Control.estadoConexion == 0)
+            if (control.Control.estadoConexion == 1)
             {
                 Response.Redirect("/componentes/requisito1/login.aspx");
             }
@@ -29,7 +29,7 @@ namespace newweb.componentes.requisito1
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Page2.aspx?test=" + txtTestBox.Text);
         }
     }
 }
