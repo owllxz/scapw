@@ -22,22 +22,6 @@
             <asp:Label ID="Label5" runat="server" Text="Fecha Actual: "></asp:Label>
             <asp:TextBox ID="TextBox3" CssClass="form-control" runat="server" Enabled="False"></asp:TextBox>
             <br />
-            <br />
-             <div class ="input-group mb-3">
-                    <asp:Label ID="Label1" runat="server" CssClass="input-group-text" Text="Comentario de la entrega"></asp:Label>
-                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-            
-
-
-            <div class ="input-group mb-2">
-                <asp:Label ID="Label2" runat="server" Text="ESTADO DE ENTREGA"></asp:Label>
-                </div>
-
-            <div class ="input-group mb-2">
-                    <asp:Label ID="Label4" runat="server" CssClass="input-group-text" Text="ID ASIGNATURA"></asp:Label>
-                    <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
 
              <div class ="input-group mb-2">               
                  <div>

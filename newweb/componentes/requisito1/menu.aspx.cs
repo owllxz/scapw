@@ -54,7 +54,7 @@ namespace newweb.componentes.requisito1
 
         protected void Button7_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("/componentes/requisito15/re15.aspx");
         }
     }
 }

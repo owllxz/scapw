@@ -16,35 +16,31 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class ="container">
-            <div>
-            <span class="d-block p-2 bg-primary text-white mb-3">Subir Syllabus</span>
+        <div class ="container-fluid">
+            <span class="d-block p-2 bg-primary text-white mb-3">Control de asistencia</span>
+            <div class="col-sm">
+            <div class="p-3 mb-1 bg-light text-black">
+            <asp:Label ID="Label4" runat="server"  Text="<strong>Seleccione la asignatura:</strong>"></asp:Label>
             </div>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="p-3 mb-1 bg-light text-black">
-                        <asp:Label ID="Label4" runat="server"  Text="<strong>Seleccione la asignatura:</strong>"></asp:Label>
-                    </div>
-                    <div class ="input-group mb-4">
-                        <asp:ListBox ID="Lista_Materias" runat="server" Width="164px" Height="57px"></asp:ListBox>
-                        <div class ="input-group mb-4">
-                            <asp:Button ID="Button2" runat="server" Text="Seleccionar" CssClass ="btn btn-info m-3 float-left" OnClick="Button2_Click" />
-                            <div class="d-flex p-2">
-                                <asp:Label ID="texto_prueba" runat="server" Text="Label" Visible="False"></asp:Label>
-                               
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm">
-                </div>
+            <div class ="input-group">
+            <asp:ListBox ID="Lista_Materias" runat="server" Width="164px" Height="57px"></asp:ListBox>
+            <div class ="input-group ">
+            <asp:Button ID="Button2" runat="server" Text="Seleccionar" CssClass ="btn btn-info m-3 float-left" OnClick="Button2_Click" />
+            <br />                          
+            </div> 
+            </div>
+            </div>
+            <br />
+            <h5>Lista Estudiantes:</h5>
+            <asp:CheckBoxList ID="CheckBoxList1" runat="server">
+            </asp:CheckBoxList>
                 
                                
-            </div>
-            
- 
-    
+            <br />
+            <br />
+            <asp:Button ID="Button3" runat="server" CssClass="btn btn-success" OnClick="Button3_Click" Text="Enviar Asistencia" />
+                
+                               
         </div>
     </form>
 </body>

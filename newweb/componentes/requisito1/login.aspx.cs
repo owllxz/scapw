@@ -540,7 +540,18 @@ namespace newweb.componentes.requisito1
                 MySqlCommand comm = conBD.CreateCommand();
                 comm.CommandText = "Update Evaluacion Set estado = 1 where ID = @ID";
 
-                comm.Parameters.AddWithValue("ID", ID);
+                comm.Parameters.AddWithValue("@ID", ID);
+                comm.ExecuteNonQuery();
+            }
+        }
+        public void actualizarClave(int ID, string clave)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Update Persona Set Password = @clave where ID = @ID";
+                comm.Parameters.AddWithValue("@clave", clave);
+                comm.Parameters.AddWithValue("@ID", ID);
                 comm.ExecuteNonQuery();
             }
         }
@@ -655,8 +666,11 @@ namespace newweb.componentes.requisito1
                 Label1.Visible = true;
                 con.cerrarConexion();
             }
-
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/componentes/requisito1/requisito2.aspx");
+        }
     }
 }

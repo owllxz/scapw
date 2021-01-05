@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -212,6 +213,7 @@ namespace newweb.componentes.requisito5
             List<string> ASIGNATURAtabla = new List<string> { };
             List<int> idASIGNATURAtabla = new List<int> { };
             List<string> ARCHIVOtabla = new List<string> { };
+            List<int> PROFESORIDtabla = new List<int> { };
             List<string> PROFESORtabla = new List<string> { };
             List<List<string>> myList = new List<List<string>>();
             //string resultado = "";
@@ -227,6 +229,7 @@ namespace newweb.componentes.requisito5
                     IDtabla.Add(myReader.GetInt32(0));
                     ARCHIVOtabla.Add(myReader.GetString(1));
                     idASIGNATURAtabla.Add(myReader.GetInt32(2));
+                    PROFESORIDtabla.Add(myReader.GetInt32(4));
                 }
                 myReader.Close();
                 foreach(int ida in idASIGNATURAtabla)
@@ -243,15 +246,20 @@ namespace newweb.componentes.requisito5
                     }
                     myReader.Close();
                 }
-                comm = conBD.CreateCommand();
-                comm.CommandText = "SELECT Archivos.Profesor_FK, Profesor.ID, Persona.Nombres from Profesor JOIN Archivos ON Archivos.Profesor_FK = Profesor.ID JOIN Persona ON Persona.ID = Profesor.Persona_FK";
-                myReader = comm.ExecuteReader();
-
-                while (myReader.Read())
+                foreach(int profesorID in PROFESORIDtabla)
                 {
-                    PROFESORtabla.Add(myReader.GetString(2));
+                    comm = conBD.CreateCommand();
+                    comm.CommandText = "SELECT Persona.Nombres FROM Profesor JOIN Persona ON Persona.ID = Profesor.Persona_FK WHERE Profesor.ID = @profesorID";
+                    comm.Parameters.AddWithValue("@profesorID", profesorID);
+                    //comm.CommandText = "SELECT Archivos.Profesor_FK, Profesor.ID, Persona.Nombres from Profesor JOIN Archivos ON Archivos.Profesor_FK = Profesor.ID JOIN Persona ON Persona.ID = Profesor.Persona_FK";
+                    myReader = comm.ExecuteReader();
+
+                    while (myReader.Read())
+                    {
+                        PROFESORtabla.Add(myReader.GetString(0));
+                    }
+                    myReader.Close();
                 }
-                myReader.Close();
                 int i = 0;
                 while(i < IDtabla.Count)
                 {
@@ -365,6 +373,28 @@ namespace newweb.componentes.requisito5
         {
             conBD.Close();
         }
+        public string obtenerCorreoA(int ID)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "SELECT Persona.Correo FROM Archivos JOIN Profesor ON Profesor.ID = Archivos.Profesor_FK JOIN Persona ON Persona.ID = Profesor.Persona_FK WHERE Archivos.ID = @ID";
+                comm.Parameters.AddWithValue("@ID", ID);
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                string correo = "";
+
+                while (myReader.Read())
+                {
+                    correo = myReader.GetString(0);
+                    break;
+                }
+                return correo;
+            }
+            return "";
+        }
     }
     public partial class WebForm1 : System.Web.UI.Page
     {
@@ -407,13 +437,32 @@ namespace newweb.componentes.requisito5
                 cargarTabla();
                 con.cerrarConexion();
 
+                con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                con.crearConexion();
+
+                string correo = con.obtenerCorreoA(Int32.Parse(TextBox1.Text));
+
+                try
+                {
+                    WebMail.SmtpServer = "mail.camifel.cl";
+                    WebMail.SmtpPort = 26;
+                    WebMail.UserName = "scap@camifel.cl";
+                    WebMail.Password = "Scap123am.";
+                    WebMail.From = "scap@camifel.cl";
+
+                    // Send email
+                    WebMail.Send(to: correo,
+                    subject: "Su archivo ha sido rechazado",
+                    body: "Vuelva a subir el archivo al sistema a travez del siguiente enlace: " + "https://localhost:44356/componentes/Req_4/Req_4" + "<br /> Razon del rechazo: " + TextBox5.Text   
+                    );
+                    Response.Redirect("/componentes/requisito1/menu.aspx");
+                }
+                catch (Exception)
+                {
+                }
+
                 //Enviar correo con observacion al profesor
             }
-        }
-
-        protected void estadoGrupo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
