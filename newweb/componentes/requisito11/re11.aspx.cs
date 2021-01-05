@@ -15,6 +15,9 @@ namespace newweb.componentes.requisito11
             {
                 Response.Redirect("/componentes/requisito1/login.aspx");
             }
+            DateTime theDate = DateTime.Now;
+            string date2 = theDate.ToString("yyyy-MM-dd");
+            TextBox3.Text = date2;
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
