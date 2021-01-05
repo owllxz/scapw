@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
+
 namespace newweb.componentes.requisito15
 {
     public class conexion
@@ -140,6 +141,9 @@ namespace newweb.componentes.requisito15
             {
                 Llenar_Lista();
             }
+
+            
+
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -150,6 +154,7 @@ namespace newweb.componentes.requisito15
                 string nombre_asignatura = Lista_Materias.SelectedItem.Text;
                 texto_prueba.Text = "Se ha seleccionado " + nombre_asignatura;
                 texto_prueba.Visible = true;
+
             }
         }
 
@@ -165,6 +170,7 @@ namespace newweb.componentes.requisito15
             Lista_Materias.DataBind();
             con.cerrarConexion();
         }
-        
+
+
     }
 }

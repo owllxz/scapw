@@ -411,5 +411,9 @@ namespace newweb.componentes.requisito5
             }
         }
 
+        protected void estadoGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

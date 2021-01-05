@@ -26,16 +26,25 @@
                         <asp:Label ID="Label4" runat="server"  Text="<strong>Seleccione la asignatura:</strong>"></asp:Label>
                     </div>
                     <div class ="input-group mb-4">
-                        <asp:ListBox ID="Lista_Materias" runat="server" Width="169px"></asp:ListBox>
+                        <asp:ListBox ID="Lista_Materias" runat="server" Width="164px" Height="57px"></asp:ListBox>
                         <div class ="input-group mb-4">
-                            <asp:Button ID="Button2" runat="server" Text="Seleccionar" CssClass ="btn btn-info" OnClick="Button2_Click" />
+                            <asp:Button ID="Button2" runat="server" Text="Seleccionar" CssClass ="btn btn-info m-3 float-left" OnClick="Button2_Click" />
                             <div class="d-flex p-2">
                                 <asp:Label ID="texto_prueba" runat="server" Text="Label" Visible="False"></asp:Label>
+                               
+
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-sm">
+                </div>
+                
+                               
             </div>
+            
+ 
+    
         </div>
     </form>
 </body>
