@@ -19,8 +19,6 @@
             <asp:TextBox ID="TextBox3" runat="server" Enabled="False"></asp:TextBox>
             <br />
             <br />
-            
-
              <div class ="input-group mb-3">
                     <asp:Label ID="Label1" runat="server" CssClass="input-group-text" Text="Comentario de la entrega"></asp:Label>
                     <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>

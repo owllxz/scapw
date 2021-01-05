@@ -14,26 +14,35 @@
 </head>
 <body>
 
-    <form id="form1" runat="server">
-            <div Class="container">
-             <div>
-                <span class="d-block p-2 bg-primary text-white mb-5">Horario de Clases</span>
-                <div class ="input-group mb-5">
-                    <asp:DropDownList ID="rolgrupo" CssClass="mx-auto btn btn-secondary dropdown-toggle mb-3" runat="server" OnSelectedIndexChanged="rolgrupo_SelectedIndexChanged">
-                    <asp:ListItem Text="curso 1" Value="1"></asp:ListItem>
-                    <asp:ListItem Text="curso 2" Value="2"></asp:ListItem>
-                    </asp:DropDownList>
-
-                    <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary mx-auto" Text="Mostrar Horario" OnClick="Button1_Click"/>
-                </div>
-
-                <div class ="input-group mb-3">
-                    <asp:Image ID="Image1" CssClass="mx-auto" runat="server"/>
-                </div>
-                
+<form id="form1" runat="server">
+    <div Class="container-fluid">
+        <div>
+            <span class="d-block p-2 bg-primary text-white mb-5">Horario de Clases</span>
+            <div class="input-group mb-3">
+                <asp:Label ID="Label1" runat="server" CssClass="input-group-text" Text="Rut"></asp:Label>
+                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-        </div>
-    </form>
+            <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" Text="Buscar" OnClick="Button1_Click"/>
+          </div> 
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Url</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% int i = 0; foreach (var h in horario) { %> <!-- loop through the list -->
+                <tr> 
+                <% i++; %>
+                <th scope="row">Horario <%= i %></th>
+                <td><a type="button" href="<%= h %>" target="_blank" class="btn btn-link">Link</a></td>
+                </tr>
+                <% } %> <!--End the for loop -->                    
+                </tbody>
+            </table>
+    </div>
+</form>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
