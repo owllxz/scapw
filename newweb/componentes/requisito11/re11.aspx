@@ -15,6 +15,7 @@
 
             <span class="d-block p-2 bg-primary text-white mb-3">CARGA DE TAREAS </span>
 
+               
              <div class ="input-group mb-3">
                     <asp:Label ID="Label1" runat="server" CssClass="input-group-text" Text="Comentario de la entrega"></asp:Label>
                     <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>

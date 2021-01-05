@@ -20,6 +20,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Asignatura</th>
                 <th scope="col">Archivo</th>
+                <th scope="col">Fecha Cierre</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,7 @@
                 <td><%= subList[1] %></td>
                 <td><%= subList[2] %></td>
                 <td><a type="button" href="<%= subList[3] %>" target="_blank" class="btn btn-link">Link</a></td>
+                <td><%= subList[4] %></td>
                 </tr>
                 <% } %> <!--End the for loop -->                    
                 </tbody>

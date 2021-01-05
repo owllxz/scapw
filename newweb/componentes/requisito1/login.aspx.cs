@@ -196,7 +196,7 @@ namespace newweb.componentes.requisito1
                     resultado = resultado.Substring(0, resultado.Length - 1);
                     */
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     
                 }
@@ -337,6 +337,7 @@ namespace newweb.componentes.requisito1
             List<string> ARCHIVOtabla = new List<string> { };
             List<string> NOMBREtabla = new List<string> { };
             List<List<string>> myList = new List<List<string>>();
+            List<string> fechaAsignatura = new List<string>();
             //string resultado = "";
             if (estado)
             {
@@ -351,6 +352,7 @@ namespace newweb.componentes.requisito1
                     ARCHIVOtabla.Add(myReader.GetString(1));
                     NOMBREtabla.Add(myReader.GetString(2));
                     idASIGNATURAtabla.Add(myReader.GetInt32(3));
+                    fechaAsignatura.Add(myReader.GetDateTime(5).ToString());
                 }
                 myReader.Close();
                 foreach (int ida in idASIGNATURAtabla)
@@ -370,7 +372,7 @@ namespace newweb.componentes.requisito1
                 int i = 0;
                 while (i < IDtabla.Count)
                 {
-                    myList.Add(new List<string> { IDtabla[i].ToString(), NOMBREtabla[i].ToString(), ASIGNATURAtabla[i].ToString(), ARCHIVOtabla[i].ToString(), });
+                    myList.Add(new List<string> { IDtabla[i].ToString(), NOMBREtabla[i].ToString(), ASIGNATURAtabla[i].ToString(), ARCHIVOtabla[i].ToString(), fechaAsignatura[i].ToString() });
                     i++;
                 }
             }
@@ -512,11 +514,63 @@ namespace newweb.componentes.requisito1
             }
             return datos;
         }
+        public Dictionary<int, String> gestionarFechas()
+        {
+            Dictionary<int, String> evaluaciones = new Dictionary<int, string>();
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Select * from Evaluacion where estado = 0";
+
+                MySqlDataReader myReader;
+                myReader = comm.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    evaluaciones.Add(myReader.GetInt32(0), myReader.GetDateTime(5).ToString());
+                }
+                myReader.Close();
+            }
+            return evaluaciones;
+        }
+        public void actualizarEvaluacion(int ID)
+        {
+            if (estado)
+            {
+                MySqlCommand comm = conBD.CreateCommand();
+                comm.CommandText = "Update Evaluacion Set estado = 1 where ID = @ID";
+
+                comm.Parameters.AddWithValue("ID", ID);
+                comm.ExecuteNonQuery();
+            }
+        }
     }
     public partial class login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            con.crearConexion();
+
+            DateTime theDate;
+            Dictionary<int, string> evaluaciones = con.gestionarFechas();
+            con.cerrarConexion();
+
+            foreach (var key in evaluaciones)
+            {
+                theDate = DateTime.Now;
+                string date = theDate.ToString("yyyy-MM-dd H:mm:ss");
+                string resultado = DateTime.Compare(Convert.ToDateTime(key.Value), Convert.ToDateTime(date)).ToString();
+                if(Int32.Parse(resultado) == -1)
+                {
+                    con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                    con.crearConexion();
+
+                    con.actualizarEvaluacion(key.Key);
+
+                    con.cerrarConexion();
+                }
+            }
         }
         public static string decodificar(string _cadenaAdesencriptar)
         {
