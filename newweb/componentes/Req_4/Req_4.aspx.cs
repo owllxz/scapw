@@ -162,12 +162,15 @@ namespace newweb.componentes.Req_4
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
-            if (Lista_Materias.SelectedItem != null)
+            if (control.Control.rol == "Profesor")
             {
-                int indice = Lista_Materias.SelectedIndex;
-                string nombre_asignatura = Lista_Materias.SelectedItem.Text;
-                texto_prueba.Text = "Se ha seleccionado " + nombre_asignatura;
-                texto_prueba.Visible = true;
+                if (Lista_Materias.SelectedItem != null)
+                {
+                    int indice = Lista_Materias.SelectedIndex;
+                    string nombre_asignatura = Lista_Materias.SelectedItem.Text;
+                    texto_prueba.Text = "Se ha seleccionado " + nombre_asignatura;
+                    texto_prueba.Visible = true;
+                }
             }
         }
         public void Llenar_Lista()
