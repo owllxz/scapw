@@ -115,7 +115,10 @@ namespace newweb.componentes.requisito12
         public List<string> horario = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (control.Control.estadoConexion == 0)
+            {
+                Response.Redirect("/componentes/requisito1/login.aspx");
+            }
         }
         protected void Button1_Click(object sender, EventArgs e)
         {

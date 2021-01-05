@@ -79,8 +79,174 @@ namespace newweb.componentes.Requisito13
             {
                 conBD.Close();
             }
+            public List<string> conocerRol(int idPersona)
+            {
+                List<string> datos = new List<string> { };
+                if (estado)
+                {
+                    string rol = "";
+                    int idRol = -1;
+
+                    MySqlCommand comm = conBD.CreateCommand();
+                    comm.CommandText = "Select * from Administrador where Persona_FK = @persona";
+                    comm.Parameters.AddWithValue("@persona", idPersona);
+
+                    MySqlDataReader myReader;
+                    myReader = comm.ExecuteReader();
+
+                    while (myReader.Read())
+                    {
+                        rol = "Administrador";
+                        idRol = myReader.GetInt32(0);
+                        break;
+                    }
+                    myReader.Close();
+                    if (idRol != -1)
+                    {
+                        datos.Add(rol);
+                        datos.Add(idRol.ToString());
+                        return datos;
+                    }
+                    else
+                    {
+                        comm = conBD.CreateCommand();
+                        comm.CommandText = "Select * from Alumnos where Persona_FK = @persona";
+                        comm.Parameters.AddWithValue("@persona", idPersona);
+                        myReader = comm.ExecuteReader();
+
+                        while (myReader.Read())
+                        {
+                            rol = "Alumnos";
+                            idRol = myReader.GetInt32(0);
+                            break;
+                        }
+                        myReader.Close();
+                        if (idRol != -1)
+                        {
+                            datos.Add(rol);
+                            datos.Add(idRol.ToString());
+                            return datos;
+                        }
+                        else
+                        {
+                            comm = conBD.CreateCommand();
+                            comm.CommandText = "Select * from Apoderado where Persona_FK = @persona";
+                            comm.Parameters.AddWithValue("@persona", idPersona);
+                            myReader = comm.ExecuteReader();
+
+                            while (myReader.Read())
+                            {
+                                rol = "Apoderado";
+                                idRol = myReader.GetInt32(0);
+                                break;
+                            }
+                            myReader.Close();
+                            if (idRol != -1)
+                            {
+                                datos.Add(rol);
+                                datos.Add(idRol.ToString());
+                                return datos;
+                            }
+                            else
+                            {
+                                comm = conBD.CreateCommand();
+                                comm.CommandText = "Select * from Director where Persona_FK = @persona";
+                                comm.Parameters.AddWithValue("@persona", idPersona);
+                                myReader = comm.ExecuteReader();
+
+                                while (myReader.Read())
+                                {
+                                    rol = "Director";
+                                    idRol = myReader.GetInt32(0);
+                                    break;
+                                }
+                                myReader.Close();
+                                if (idRol != -1)
+                                {
+                                    datos.Add(rol);
+                                    datos.Add(idRol.ToString());
+                                    return datos;
+                                }
+                                else
+                                {
+                                    comm = conBD.CreateCommand();
+                                    comm.CommandText = "Select * from Profesor where Persona_FK = @persona";
+                                    comm.Parameters.AddWithValue("@persona", idPersona);
+                                    myReader = comm.ExecuteReader();
+
+                                    while (myReader.Read())
+                                    {
+                                        rol = "Profesor";
+                                        idRol = myReader.GetInt32(0);
+                                        break;
+                                    }
+                                    myReader.Close();
+                                    if (idRol != -1)
+                                    {
+                                        datos.Add(rol);
+                                        datos.Add(idRol.ToString());
+                                        return datos;
+                                    }
+                                    else
+                                    {
+                                        comm = conBD.CreateCommand();
+                                        comm.CommandText = "Select * from Secretario where Persona_FK = @persona";
+                                        comm.Parameters.AddWithValue("@persona", idPersona);
+                                        myReader = comm.ExecuteReader();
+
+                                        while (myReader.Read())
+                                        {
+                                            rol = "Secretario";
+                                            idRol = myReader.GetInt32(0);
+                                            break;
+                                        }
+                                        myReader.Close();
+                                        if (idRol != -1)
+                                        {
+                                            datos.Add(rol);
+                                            datos.Add(idRol.ToString());
+                                            return datos;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return datos;
+            }
+            public int idUsuario(string rut)
+            {
+                if (estado)
+                {
+                    try
+                    {
+                        int usuario = -1;
+                        MySqlCommand comm = conBD.CreateCommand();
+                        comm.CommandText = "Select * from Persona where Rut = @rut";
+                        comm.Parameters.AddWithValue("rut", rut);
+
+                        MySqlDataReader myReader = comm.ExecuteReader();
+
+                        while (myReader.Read())
+                        {
+                            usuario = myReader.GetInt32(0);
+                        }
+                        return usuario;
+                    }
+                    catch (Exception)
+                    {
+                        return -1;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
         }
         public List<List<string>> myList = new List<List<string>>();
+        public List<List<string>> myList2 = new List<List<string>>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (control.Control.estadoConexion == 0)
@@ -91,11 +257,6 @@ namespace newweb.componentes.Requisito13
             Dictionary<string, int> asignaturas = idAsignatura();
 
             Consulta(asignaturas.Count());
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         public void Consulta(int cantidadAsignaturas)
         {
@@ -138,6 +299,23 @@ namespace newweb.componentes.Requisito13
             con.cerrarConexion();
             return asignaturas;
         }
+        public Dictionary<string, int> idAsignatura2(int rolID)
+        {
+            Dictionary<string, int> asignaturas = new Dictionary<string, int>();
+
+            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            MySqlCommand comm = con.crearConexion().CreateCommand();
+            comm.CommandText = "SELECT Asignaturas.Nombre, Asignaturas.ID FROM Asignaturas_Alumnos INNER JOIN Asignaturas ON Asignaturas.ID = Asignaturas_Alumnos.Asignatura_FK WHERE Asignaturas_Alumnos.Alumnos_FK = @idAlumno";
+            comm.Parameters.AddWithValue("idAlumno", rolID);
+            MySqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                asignaturas.Add(reader.GetString(0), reader.GetInt32(1));
+            }
+            reader.Close();
+            con.cerrarConexion();
+            return asignaturas;
+        }
         //SELECT * FROM Asignaturas_Alumnos WHERE Asignatura_FK = 2 AND Alumnos_FK = 2
         public int idAsignaturas_Alumnos(int idAsignatura)
         {
@@ -145,6 +323,24 @@ namespace newweb.componentes.Requisito13
             MySqlCommand comm = con.crearConexion().CreateCommand();
             comm.CommandText = "SELECT * FROM Asignaturas_Alumnos WHERE Asignatura_FK = @idAsignatura  AND Alumnos_FK = @idAlumno";
             comm.Parameters.AddWithValue("idAlumno", control.Control.rolID);
+            comm.Parameters.AddWithValue("idAsignatura", idAsignatura);
+            MySqlDataReader reader = comm.ExecuteReader();
+            int idAsignaturaA = -1;
+            while (reader.Read())
+            {
+                idAsignaturaA = reader.GetInt32(0);
+                break;
+            }
+            reader.Close();
+            con.cerrarConexion();
+            return idAsignaturaA;
+        }
+        public int idAsignaturas_Alumnos2(int idAsignatura, int rolID)
+        {
+            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            MySqlCommand comm = con.crearConexion().CreateCommand();
+            comm.CommandText = "SELECT * FROM Asignaturas_Alumnos WHERE Asignatura_FK = @idAsignatura  AND Alumnos_FK = @idAlumno";
+            comm.Parameters.AddWithValue("idAlumno", rolID);
             comm.Parameters.AddWithValue("idAsignatura", idAsignatura);
             MySqlDataReader reader = comm.ExecuteReader();
             int idAsignaturaA = -1;
@@ -174,10 +370,31 @@ namespace newweb.componentes.Requisito13
             con.cerrarConexion();
             return myList;
         }
-
+        public List<List<string>> notas2(Dictionary<string, int> asignaturas, int rolID)
+        {
+            List<List<string>> myList2 = new List<List<string>>();
+            foreach (var a in asignaturas)
+            {
+                int idAsignaturaAlumnos = idAsignaturas_Alumnos2(a.Value, rolID);
+                if (idAsignaturaAlumnos != -1)
+                {
+                    conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+                    MySqlCommand comm = con.crearConexion().CreateCommand();
+                    comm.CommandText = "SELECT Nombre, Ponderacion, Nota FROM Notas WHERE Asignaturas_Alumnos_FK = @ID";
+                    comm.Parameters.AddWithValue("@ID", idAsignaturaAlumnos);
+                    MySqlDataReader reader = comm.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        myList2.Add(new List<string> { a.Key, reader.GetString(0), reader.GetFloat(1).ToString(), reader.GetFloat(2).ToString() });
+                    }
+                    reader.Close();
+                    con.cerrarConexion();
+                }
+            }
+            return myList2;
+        }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Asignatura.Text = DropDownList1.SelectedItem.Text;
             Dictionary<string, int> asignaturas = idAsignatura();
             int idAsignaturaAlumnos = 0;
             foreach (var a in asignaturas)
@@ -193,6 +410,26 @@ namespace newweb.componentes.Requisito13
                 int IDaA = idAsignaturaAlumnos;
                 myList = notas(IDaA);
             }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            conexion con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            con.crearConexion();
+            int ID = con.idUsuario(TextBox1.Text);
+
+            con.cerrarConexion();
+            con = new conexion("camifel.cl", "3306", "camifel_admin", "Scap123am.", "camifel_scap");
+            con.crearConexion();
+
+            List<string> persona = con.conocerRol(ID);
+            
+            if(persona.Count > 0)
+            {
+                Dictionary<string, int> asignaturas = idAsignatura2(Int32.Parse(persona[1]));
+                myList2 = notas2(asignaturas, Int32.Parse(persona[1]));
+            }
+            con.cerrarConexion();
         }
     }
 }
